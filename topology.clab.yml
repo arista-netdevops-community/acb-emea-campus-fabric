@@ -142,6 +142,20 @@ topology:
       binds:
         - configs/linux/idf3-guest-netplan.yaml:/etc/netplan/netplan.yaml
 
+    # ---------------------------------- #
+    # Services
+    # ---------------------------------- #
+    radius:
+      image: git.as73.inetsix.net/docker/freeradius:latest
+      mgmt_ipv4: 172.20.2.253
+      kind: linux
+      binds:
+        - freeradius/raddb/clients.conf:/etc/raddb/clients.conf
+        - freeradius/raddb/authorized_macs:/etc/raddb/authorized_macs
+        - freeradius/raddb/mods-config/files/authorize:/etc/raddb/mods-config/files/authorize
+        - freeradius/raddb/mods-config/files/authorized_macs:/etc/raddb/mods-enabled/authorized_macs
+        - freeradius/raddb/sites-available/default:/etc/raddb/sites-available/default
+
   links:
       # Spine Peer Links
     - endpoints: ["spine1:eth55", "spine2:eth55"]

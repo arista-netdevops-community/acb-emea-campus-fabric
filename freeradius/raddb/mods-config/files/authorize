@@ -1,0 +1,17 @@
+cvpadmin Cleartext-Password := "cvpadmin"
+        Arista-AVPair = "shell:priv-lvl=15",
+        Service-Type = NAS-Prompt-User
+
+cvpuser Cleartext-Password := "cvpuser"
+        Arista-AVPair = "shell:priv-lvl=15",
+        Service-Type = NAS-Prompt-User
+
+demoradius Cleartext-Password := "demoredius"
+        Arista-AVPair = "shell:priv-lvl=15",
+        Service-Type = NAS-Prompt-User
+
+aradmin  Cleartext-Password := "aradmin"
+        Auth-Type := Accept,
+        Service-Type := NAS-Prompt-User,
+        Arista-AVpair = "shell:priv-lvl=15",
+        Arista-AVpair = "shell:cvp-roles=network-admin"

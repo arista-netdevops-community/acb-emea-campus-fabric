@@ -1,0 +1,103 @@
+[
+  {
+    "name": "campus-leaf2a",
+    "test": "VerifyLLDPNeighbors",
+    "categories": [
+      "connectivity"
+    ],
+    "description": "Verifies that the provided LLDP neighbors are connected properly.",
+    "result": "success",
+    "custom_field": "Local: Ethernet1/1 - Remote: campus-spine1 Ethernet49/1"
+  },
+  {
+    "name": "campus-leaf2a",
+    "test": "VerifyLLDPNeighbors",
+    "categories": [
+      "connectivity"
+    ],
+    "description": "Verifies that the provided LLDP neighbors are connected properly.",
+    "result": "success",
+    "custom_field": "Local: Ethernet2/1 - Remote: campus-spine2 Ethernet49/1"
+  },
+  {
+    "name": "campus-leaf2a",
+    "test": "VerifyReachability",
+    "categories": [
+      "connectivity"
+    ],
+    "description": "Test the network reachability to one or many destination IP(s).",
+    "result": "success",
+    "custom_field": "Source: Inband MGMT SVI Vlan10 (IP: 10.10.10.8) - Destination: campus-spine1 Loopback0 (IP: 172.16.1.1)"
+  },
+  {
+    "name": "campus-leaf2a",
+    "test": "VerifyReachability",
+    "categories": [
+      "connectivity"
+    ],
+    "description": "Test the network reachability to one or many destination IP(s).",
+    "result": "success",
+    "custom_field": "Source: Inband MGMT SVI Vlan10 (IP: 10.10.10.8) - Destination: campus-spine2 Loopback0 (IP: 172.16.1.2)"
+  },
+  {
+    "name": "campus-leaf2a",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Ethernet1/1 - CAMPUS-SPINE1_Ethernet49/1 = 'up'"
+  },
+  {
+    "name": "campus-leaf2a",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Ethernet2/1 - CAMPUS-SPINE2_Ethernet49/1 = 'up'"
+  },
+  {
+    "name": "campus-leaf2a",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Port-Channel11 - SPINES_Po491 = 'up'"
+  },
+  {
+    "name": "campus-leaf2a",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Vlan10 - Inband Management = 'up'"
+  },
+  {
+    "name": "campus-leaf2a",
+    "test": "VerifyNTP",
+    "categories": [
+      "system"
+    ],
+    "description": "Verifies if NTP is synchronised.",
+    "result": "failure",
+    "messages": [
+      "The device is not synchronized with the configured NTP server(s): 'unsynchronised'"
+    ]
+  },
+  {
+    "name": "campus-leaf2a",
+    "test": "VerifyReloadCause",
+    "categories": [
+      "system"
+    ],
+    "description": "Verifies the last reload cause of the device.",
+    "result": "success"
+  }
+]

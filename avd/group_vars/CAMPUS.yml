@@ -1,0 +1,117 @@
+---
+design:
+  type: l2ls
+
+# Spine Switches
+l3spine:
+  defaults:
+    platform: 7050X3
+    spanning_tree_mode: mstp
+    spanning_tree_priority: 4096
+    loopback_ipv4_pool: 172.16.1.0/24
+    mlag_peer_ipv4_pool: 192.168.0.0/24
+    mlag_peer_l3_ipv4_pool: 10.1.1.0/24
+    virtual_router_mac_address: 00:1c:73:00:dc:01
+    mlag_interfaces: [Ethernet55/1, Ethernet56/1]
+  node_groups:
+    - group: SPINES
+      nodes:
+        - name: campus-spine1
+          id: 1
+          mgmt_ip: 172.20.2.1/16
+          ipv6_mgmt_ip: fd00:6265:b424:a8b8::2:1/64
+        - name: campus-spine2
+          id: 2
+          mgmt_ip: 172.20.2.2/16
+          ipv6_mgmt_ip: fd00:6265:b424:a8b8::2:2/64
+
+# IDF - Leaf Switches
+leaf:
+  defaults:
+    platform: 720XP
+    mlag_peer_ipv4_pool: 192.168.0.0/24
+    spanning_tree_mode: mstp
+    spanning_tree_priority: 16384
+    inband_mgmt_subnet: 10.10.10.0/24
+    inband_mgmt_vlan: 10
+  node_groups:
+    - group: IDF1
+      mlag: true
+      uplink_interfaces: [Ethernet51]
+      mlag_interfaces: [Ethernet53, Ethernet54]
+      filter:
+        tags: [ "110", "120", "130" ]
+      nodes:
+        - name: campus-leaf1a
+          id: 3
+          mgmt_ip: 172.20.2.3/16
+          ipv6_mgmt_ip: fd00:6265:b424:a8b8::2:3/64
+          uplink_switches: [campus-spine1]
+          uplink_switch_interfaces: [Ethernet1]
+        - name: campus-leaf1b
+          id: 4
+          mgmt_ip: 172.20.2.4/16
+          ipv6_mgmt_ip: fd00:6265:b424:a8b8::2:4/64
+          uplink_switches: [campus-spine2]
+          uplink_switch_interfaces: [Ethernet1]
+    - group: IDF2
+      platform: 755
+      mlag: false
+      filter:
+        tags: [ "210", "220", "230" ]
+      nodes:
+        - name: campus-leaf2a
+          id: 5
+          mgmt_ip: 172.20.2.5/16
+          ipv6_mgmt_ip: fd00:6265:b424:a8b8::2:5/64
+          uplink_interfaces: [Ethernet1/1, Ethernet2/1]
+          uplink_switches: [campus-spine1, campus-spine2]
+          uplink_switch_interfaces: [Ethernet49/1, Ethernet49/1]
+    - group: IDF3_AGG
+      mlag: true
+      mlag_interfaces: [Ethernet98/3, Ethernet98/4]
+      uplink_switches: [campus-spine1, campus-spine2]
+      uplink_interfaces: [Ethernet97/1, Ethernet97/2]
+      filter:
+        tags: [ "310", "320", "330" ]
+      nodes:
+        - name: campus-leaf3a
+          id: 6
+          mgmt_ip: 172.20.2.6/16
+          ipv6_mgmt_ip: fd00:6265:b424:a8b8::2:6/64
+          uplink_switch_interfaces: [Ethernet50/1, Ethernet50/1]
+        - name: campus-leaf3b
+          id: 7
+          mgmt_ip: 172.20.2.7/16
+          ipv6_mgmt_ip: fd00:6265:b424:a8b8::2:7/64
+          uplink_switch_interfaces: [Ethernet51/1, Ethernet51/1]
+    - group: IDF3_3C
+      mlag: false
+      uplink_switches: [campus-leaf3a, campus-leaf3b]
+      uplink_interfaces: [Ethernet97/1, Ethernet97/2]
+      nodes:
+        - name: campus-leaf3c
+          id: 8
+          mgmt_ip: 172.20.2.8/16
+          ipv6_mgmt_ip: fd00:6265:b424:a8b8::2:8/64
+          uplink_switch_interfaces: [Ethernet97/3, Ethernet97/3]
+    - group: IDF3_3D
+      mlag: false
+      uplink_switches: [campus-leaf3a, campus-leaf3b]
+      uplink_interfaces: [Ethernet97/1, Ethernet97/2]
+      nodes:
+        - name: campus-leaf3d
+          id: 9
+          mgmt_ip: 172.20.2.9/16
+          ipv6_mgmt_ip: fd00:6265:b424:a8b8::2:9/64
+          uplink_switch_interfaces: [Ethernet97/4, Ethernet97/4]
+    - group: IDF3_3E
+      mlag: false
+      uplink_switches: [campus-leaf3a, campus-leaf3b]
+      uplink_interfaces: [Ethernet97/1, Ethernet97/2]
+      nodes:
+        - name: campus-leaf3e
+          id: 10
+          mgmt_ip: 172.20.2.10/16
+          ipv6_mgmt_ip: fd00:6265:b424:a8b8::2:10/64
+          uplink_switch_interfaces: [Ethernet98/1, Ethernet98/1]

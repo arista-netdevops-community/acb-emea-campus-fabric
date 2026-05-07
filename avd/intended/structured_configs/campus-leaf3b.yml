@@ -1,0 +1,282 @@
+hostname: campus-leaf3b
+is_deployed: true
+serial_number: MTACHECAMPUS007
+static_routes:
+- vrf: MGMT
+  destination_address_prefix: 0.0.0.0/0
+  gateway: 172.20.0.1
+- destination_address_prefix: 0.0.0.0/0
+  gateway: 10.10.10.1
+ipv6_static_routes:
+- vrf: MGMT
+  destination_address_prefix: ::/0
+  gateway: fd00:6265:b424:a8b8::1
+service_routing_protocols_model: multi-agent
+daemon_terminattr:
+  cvaddrs:
+  - apiserver.cv-staging.corp.arista.io:443
+  cvauth:
+    method: token-secure
+    token_file: /mnt/flash/cv-onboarding-token
+  cvvrf: MGMT
+  smashexcludes: ale,flexCounter,hardware,kni,pulse,strata
+  ingestexclude: /Sysdb/cell/1/agent,/Sysdb/cell/2/agent
+  disable_aaa: false
+vlan_internal_order:
+  allocation: ascending
+  range:
+    beginning: 1006
+    ending: 1199
+ip_name_servers:
+- ip_address: 8.8.8.8
+  vrf: MGMT
+spanning_tree:
+  mode: mstp
+  mst_instances:
+  - id: '0'
+    priority: 16384
+  no_spanning_tree_vlan: '4094'
+local_users:
+- name: admin
+  privilege: 15
+  role: network-admin
+  no_password: true
+- name: mtache
+  privilege: 15
+  role: network-admin
+  no_password: true
+vrfs:
+- name: MGMT
+  ip_routing: false
+  ipv6_routing: false
+management_interfaces:
+- name: Management1
+  description: oob_management
+  shutdown: false
+  vrf: MGMT
+  ip_address: 172.20.2.7/16
+  gateway: 172.20.0.1
+  type: oob
+  ipv6_enable: true
+  ipv6_address: fd00:6265:b424:a8b8::2:7/64
+  ipv6_gateway: fd00:6265:b424:a8b8::1
+  lldp:
+    transmit: false
+    receive: false
+management_api_http:
+  enable_vrfs:
+  - name: MGMT
+  enable_https: true
+vlans:
+- id: 4094
+  tenant: system
+  name: MLAG_PEER
+  trunk_groups:
+  - MLAG
+- id: 310
+  name: IDF3-Data
+  tenant: MY_CAMPUS
+- id: 320
+  name: IDF3-Voice
+  tenant: MY_CAMPUS
+- id: 330
+  name: IDF3-Guest
+  tenant: MY_CAMPUS
+- id: 10
+  tenant: system
+  name: INBAND_MGMT
+vlan_interfaces:
+- name: Vlan4094
+  description: MLAG_PEER
+  shutdown: false
+  no_autostate: true
+  mtu: 1500
+  ip_address: 192.168.0.11/31
+- name: Vlan10
+  description: Inband Management
+  shutdown: false
+  mtu: 1500
+  ip_address: 10.10.10.10/24
+  type: inband_mgmt
+port_channel_interfaces:
+- name: Port-Channel983
+  description: MLAG_PEER_campus-leaf3a_Po983
+  type: switched
+  shutdown: false
+  mode: trunk
+  trunk_groups:
+  - MLAG
+- name: Port-Channel971
+  description: SPINES_Po501
+  type: switched
+  shutdown: false
+  mode: trunk
+  vlans: 10,310,320,330
+  mlag: 971
+- name: Port-Channel973
+  description: CAMPUS-LEAF3C_Po971
+  type: switched
+  shutdown: false
+  mode: trunk
+  vlans: 10,310,320,330
+  mlag: 973
+- name: Port-Channel974
+  description: CAMPUS-LEAF3D_Po971
+  type: switched
+  shutdown: false
+  mode: trunk
+  vlans: 10,310,320,330
+  mlag: 974
+- name: Port-Channel981
+  description: CAMPUS-LEAF3E_Po971
+  type: switched
+  shutdown: false
+  mode: trunk
+  vlans: 10,310,320,330
+  mlag: 981
+ethernet_interfaces:
+- name: Ethernet98/3
+  peer: campus-leaf3a
+  peer_interface: Ethernet98/3
+  peer_type: mlag_peer
+  description: MLAG_PEER_campus-leaf3a_Ethernet98/3
+  type: port-channel-member
+  shutdown: false
+  channel_group:
+    id: 983
+    mode: active
+- name: Ethernet98/4
+  peer: campus-leaf3a
+  peer_interface: Ethernet98/4
+  peer_type: mlag_peer
+  description: MLAG_PEER_campus-leaf3a_Ethernet98/4
+  type: port-channel-member
+  shutdown: false
+  channel_group:
+    id: 983
+    mode: active
+- name: Ethernet97/1
+  peer: campus-spine1
+  peer_interface: Ethernet51/1
+  peer_type: l3spine
+  description: CAMPUS-SPINE1_Ethernet51/1
+  shutdown: false
+  type: port-channel-member
+  channel_group:
+    id: 971
+    mode: active
+- name: Ethernet97/2
+  peer: campus-spine2
+  peer_interface: Ethernet51/1
+  peer_type: l3spine
+  description: CAMPUS-SPINE2_Ethernet51/1
+  shutdown: false
+  type: port-channel-member
+  channel_group:
+    id: 971
+    mode: active
+- name: Ethernet97/3
+  peer: campus-leaf3c
+  peer_interface: Ethernet97/2
+  peer_type: leaf
+  description: CAMPUS-LEAF3C_Ethernet97/2
+  shutdown: false
+  type: port-channel-member
+  channel_group:
+    id: 973
+    mode: active
+- name: Ethernet97/4
+  peer: campus-leaf3d
+  peer_interface: Ethernet97/2
+  peer_type: leaf
+  description: CAMPUS-LEAF3D_Ethernet97/2
+  shutdown: false
+  type: port-channel-member
+  channel_group:
+    id: 974
+    mode: active
+- name: Ethernet98/1
+  peer: campus-leaf3e
+  peer_interface: Ethernet97/2
+  peer_type: leaf
+  description: CAMPUS-LEAF3E_Ethernet97/2
+  shutdown: false
+  type: port-channel-member
+  channel_group:
+    id: 981
+    mode: active
+mlag_configuration:
+  domain_id: IDF3_AGG
+  local_interface: Vlan4094
+  peer_address: 192.168.0.10
+  peer_link: Port-Channel983
+  reload_delay_mlag: '300'
+  reload_delay_non_mlag: '330'
+ip_igmp_snooping:
+  globally_enabled: true
+metadata:
+  platform: 720XP
+  cv_tags:
+    device_tags:
+    - name: Campus
+      value: Arista Cloud Builders
+    - name: Campus-Pod
+      value: Headquarters
+    - name: Access-Pod
+      value: IDF3
+    interface_tags:
+    - interface: Ethernet98/3
+      tags:
+      - name: Link-Type
+        value: Fabric
+    - interface: Ethernet98/4
+      tags:
+      - name: Link-Type
+        value: Fabric
+    - interface: Ethernet97/1
+      tags:
+      - name: Link-Type
+        value: Fabric
+    - interface: Ethernet97/2
+      tags:
+      - name: Link-Type
+        value: Fabric
+    - interface: Ethernet97/3
+      tags:
+      - name: Link-Type
+        value: Fabric
+    - interface: Ethernet97/4
+      tags:
+      - name: Link-Type
+        value: Fabric
+    - interface: Ethernet98/1
+      tags:
+      - name: Link-Type
+        value: Fabric
+aaa_authentication:
+  login: null
+  policies:
+    local:
+      allow_nopassword: true
+aaa_authorization:
+  exec:
+    default: local
+ntp:
+  local_interface:
+    name: Management1
+    vrf: MGMT
+  servers:
+  - name: 0.pool.ntp.org
+    vrf: MGMT
+event_handlers:
+- name: ConfigureHardwareModel
+  trigger: on-boot
+  actions:
+    bash_command: "python -m Acons Sysdb << EOF\ncd /ar/Sysdb/hardware/entmib\nif (model := os.getenv('MODEL_NAME')):\n   _.fixedSystem.modelName
+      = model\nelif (model := os.getenv('CHASSIS_MODEL_NAME')):\n   _.chassis = (1,0,'Chassis')\n   _.chassis.modelName = model\n   for
+      var, value in os.environ.items():\n      if var.startswith('CHASSIS'):\n         keys = var.split('_')\n         if keys[1] ==
+      \"SUPERVISOR\":\n            i = int(keys[2])\n            _.chassis.cardSlot.newMember(100002000+i, i, 'Supervisor')\n            _.chassis.cardSlot[i].card
+      = (100002100+i, i, 'Supervisor')\n            _.chassis.cardSlot[i].card.modelName = value\n         elif keys[1] == \"LINECARD\":\n
+      \           i = int(keys[2]) + 2\n            _.chassis.cardSlot.newMember(100002000+i, i, 'Linecard')\n            _.chassis.cardSlot[i].card
+      = (100002100+i, i, 'Linecard')\n            _.chassis.cardSlot[i].card.modelName = value\n\nprint(f\"Hardare model has been set
+      to {model}\")\nEOF\n"

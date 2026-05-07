@@ -1,0 +1,164 @@
+---
+fabric_name: ACB
+
+# Underlay Routing Protocol
+underlay_routing_protocol: ospf
+
+#######
+# AAA #
+#######
+local_users:
+  - name: admin
+    privilege: 15
+    role: network-admin
+    no_password: true
+  - name: mtache
+    privilege: 15
+    role: network-admin
+    no_password: true
+
+custom_structured_configuration_aaa_authentication:
+  login:
+  policies:
+    local:
+      allow_nopassword: true
+
+custom_structured_configuration_aaa_authorization:
+  exec:
+    default: local
+
+##############
+# Interfaces #
+##############
+# P2P interfaces MTU, includes VLANs 4093 and 4094 that are over peer-link
+# If you're running vEOS-lab or cEOS, you should use MTU of 1500 instead as shown in the following line
+p2p_uplinks_mtu: 1500
+
+switchport_default:
+  mode: routed
+
+platform_settings:
+  - feature_support:
+      poe: true
+      bgp_update_wait_for_convergence: false
+      bgp_update_wait_install: false
+      interface_storm_control: false
+      queue_monitor_length_notify: false
+    platforms:
+    - 720XP
+    reload_delay:
+      mlag: 300
+      non_mlag: 330
+    trident_forwarding_table_partition: flexible exact-match 16384 l2-shared 98304 l3-shared
+      131072
+  - feature_support:
+      bgp_update_wait_for_convergence: false
+      bgp_update_wait_install: false
+      interface_storm_control: false
+      queue_monitor_length_notify: false
+    platforms:
+    - 7050X3
+    reload_delay:
+      mlag: 300
+      non_mlag: 330
+    trident_forwarding_table_partition: flexible exact-match 16384 l2-shared 98304 l3-shared
+      131072
+  - feature_support:
+      bgp_update_wait_for_convergence: false
+      bgp_update_wait_install: false
+      interface_storm_control: false
+      queue_monitor_length_notify: false
+      poe: true
+    management_interface: Management1/1
+    platforms:
+    - '750'
+    - '755'
+    - '758'
+    reload_delay:
+      mlag: 300
+      non_mlag: 330
+
+custom_structured_configuration_management_interfaces:
+  - name: Management1
+    vrf: MGMT
+    lldp:
+      transmit: False
+      receive: False
+
+# custom_structured_configuration_sflow:
+#   sample: 1
+#   polling_interval: 2
+#   destinations:
+#     - destination: 127.0.0.1
+#   source_interface: Loopback0
+#   run: True
+
+##########################
+# CloudVision/TerminAttr #
+##########################
+cvp_instance_ips: [apiserver.cv-staging.corp.arista.io]
+terminattr_smashexcludes: "ale,flexCounter,hardware,kni,pulse,strata"
+terminattr_ingestexclude: "/Sysdb/cell/1/agent,/Sysdb/cell/2/agent"
+cvp_token_file: /mnt/flash/cv-onboarding-token
+
+##############
+# Management #
+##############
+
+# DNS Server
+name_servers:
+  - 8.8.8.8
+
+# Default gateway used for the management interface
+mgmt_gateway: 172.20.0.1
+ipv6_mgmt_gateway: fd00:6265:b424:a8b8::1
+
+# NTP Servers IP or DNS name, first NTP server will be prefered, and sourced from Management VRF
+custom_structured_configuration_ntp:
+  local_interface:
+    name: Management1
+    vrf: MGMT
+  servers:
+    - name: 0.pool.ntp.org
+      vrf: MGMT
+
+custom_structured_configuration_event_handlers:
+  - name: ConfigureHardwareModel
+    trigger: on-boot
+    actions:
+      bash_command: |
+        python -m Acons Sysdb << EOF
+        cd /ar/Sysdb/hardware/entmib
+        if (model := os.getenv('MODEL_NAME')):
+           _.fixedSystem.modelName = model
+        elif (model := os.getenv('CHASSIS_MODEL_NAME')):
+           _.chassis = (1,0,'Chassis')
+           _.chassis.modelName = model
+           for var, value in os.environ.items():
+              if var.startswith('CHASSIS'):
+                 keys = var.split('_')
+                 if keys[1] == "SUPERVISOR":
+                    i = int(keys[2])
+                    _.chassis.cardSlot.newMember(100002000+i, i, 'Supervisor')
+                    _.chassis.cardSlot[i].card = (100002100+i, i, 'Supervisor')
+                    _.chassis.cardSlot[i].card.modelName = value
+                 elif keys[1] == "LINECARD":
+                    i = int(keys[2]) + 2
+                    _.chassis.cardSlot.newMember(100002000+i, i, 'Linecard')
+                    _.chassis.cardSlot[i].card = (100002100+i, i, 'Linecard')
+                    _.chassis.cardSlot[i].card.modelName = value
+
+        print(f"Hardare model has been set to {model}")
+        EOF
+
+#### WAN/Core Edge Links ####
+# core_interfaces:
+#   p2p_links:
+#     - ip: [ 10.0.0.3/31, 10.0.0.2/31 ]
+#       nodes: [ SPINE1, WAN ]
+#       interfaces: [ Ethernet52/1, Ethernet1/1 ]
+#       include_in_underlay_protocol: true
+#     - ip: [ 10.0.0.5/31, 10.0.0.4/31 ]
+#       nodes: [ SPINE2, WAN ]
+#       interfaces: [ Ethernet52/1, Ethernet1/1 ]
+#       include_in_underlay_protocol: true

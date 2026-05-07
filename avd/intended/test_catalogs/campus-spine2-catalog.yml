@@ -1,0 +1,190 @@
+anta.tests.connectivity:
+- VerifyLLDPNeighbors:
+    neighbors:
+    - neighbor_device: campus-spine1
+      neighbor_port: Ethernet55/1
+      port: Ethernet55/1
+    result_overwrite:
+      custom_field: 'Local: Ethernet55/1 - Remote: campus-spine1 Ethernet55/1'
+- VerifyLLDPNeighbors:
+    neighbors:
+    - neighbor_device: campus-spine1
+      neighbor_port: Ethernet56/1
+      port: Ethernet56/1
+    result_overwrite:
+      custom_field: 'Local: Ethernet56/1 - Remote: campus-spine1 Ethernet56/1'
+- VerifyLLDPNeighbors:
+    neighbors:
+    - neighbor_device: campus-leaf1b
+      neighbor_port: Ethernet51
+      port: Ethernet1
+    result_overwrite:
+      custom_field: 'Local: Ethernet1 - Remote: campus-leaf1b Ethernet51'
+- VerifyLLDPNeighbors:
+    neighbors:
+    - neighbor_device: campus-leaf2a
+      neighbor_port: Ethernet2/1
+      port: Ethernet49/1
+    result_overwrite:
+      custom_field: 'Local: Ethernet49/1 - Remote: campus-leaf2a Ethernet2/1'
+- VerifyLLDPNeighbors:
+    neighbors:
+    - neighbor_device: campus-leaf3a
+      neighbor_port: Ethernet97/2
+      port: Ethernet50/1
+    result_overwrite:
+      custom_field: 'Local: Ethernet50/1 - Remote: campus-leaf3a Ethernet97/2'
+- VerifyLLDPNeighbors:
+    neighbors:
+    - neighbor_device: campus-leaf3b
+      neighbor_port: Ethernet97/2
+      port: Ethernet51/1
+    result_overwrite:
+      custom_field: 'Local: Ethernet51/1 - Remote: campus-leaf3b Ethernet97/2'
+anta.tests.hardware: []
+anta.tests.interfaces:
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Ethernet55/1
+      status: up
+    result_overwrite:
+      custom_field: Interface Ethernet55/1 - MLAG_PEER_campus-spine1_Ethernet55/1
+        = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Ethernet56/1
+      status: up
+    result_overwrite:
+      custom_field: Interface Ethernet56/1 - MLAG_PEER_campus-spine1_Ethernet56/1
+        = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Ethernet1
+      status: up
+    result_overwrite:
+      custom_field: Interface Ethernet1 - CAMPUS-LEAF1B_Ethernet51 = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Ethernet49/1
+      status: up
+    result_overwrite:
+      custom_field: Interface Ethernet49/1 - CAMPUS-LEAF2A_Ethernet2/1 = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Ethernet50/1
+      status: up
+    result_overwrite:
+      custom_field: Interface Ethernet50/1 - CAMPUS-LEAF3A_Ethernet97/2 = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Ethernet51/1
+      status: up
+    result_overwrite:
+      custom_field: Interface Ethernet51/1 - CAMPUS-LEAF3B_Ethernet97/2 = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Port-Channel551
+      status: up
+    result_overwrite:
+      custom_field: Interface Port-Channel551 - MLAG_PEER_campus-spine1_Po551 = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Port-Channel1
+      status: up
+    result_overwrite:
+      custom_field: Interface Port-Channel1 - IDF1_Po51 = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Port-Channel491
+      status: up
+    result_overwrite:
+      custom_field: Interface Port-Channel491 - CAMPUS-LEAF2A_Po11 = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Port-Channel501
+      status: up
+    result_overwrite:
+      custom_field: Interface Port-Channel501 - IDF3_AGG_Po971 = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Vlan4093
+      status: up
+    result_overwrite:
+      custom_field: Interface Vlan4093 - MLAG_PEER_L3_PEERING = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Vlan4094
+      status: up
+    result_overwrite:
+      custom_field: Interface Vlan4094 - MLAG_PEER = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Vlan110
+      status: up
+    result_overwrite:
+      custom_field: Interface Vlan110 - IDF1-Data = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Vlan120
+      status: up
+    result_overwrite:
+      custom_field: Interface Vlan120 - IDF1-Voice = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Vlan130
+      status: up
+    result_overwrite:
+      custom_field: Interface Vlan130 - IDF1-Guest = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Vlan210
+      status: up
+    result_overwrite:
+      custom_field: Interface Vlan210 - IDF2-Data = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Vlan220
+      status: up
+    result_overwrite:
+      custom_field: Interface Vlan220 - IDF2-Voice = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Vlan230
+      status: up
+    result_overwrite:
+      custom_field: Interface Vlan230 - IDF2-Guest = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Vlan310
+      status: up
+    result_overwrite:
+      custom_field: Interface Vlan310 - IDF3-Data = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Vlan320
+      status: up
+    result_overwrite:
+      custom_field: Interface Vlan320 - IDF3-Voice = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Vlan330
+      status: up
+    result_overwrite:
+      custom_field: Interface Vlan330 - IDF3-Guest = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Vlan10
+      status: up
+    result_overwrite:
+      custom_field: Interface Vlan10 - Inband Management = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Loopback0
+      status: up
+    result_overwrite:
+      custom_field: Interface Loopback0 - Router_ID = 'up'
+anta.tests.mlag:
+- VerifyMlagStatus: null
+anta.tests.system:
+- VerifyNTP: null
+- VerifyReloadCause: null

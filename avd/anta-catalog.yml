@@ -1,0 +1,1620 @@
+anta.tests.connectivity:
+- VerifyLLDPNeighbors:
+    filters:
+      tags:
+      - campus-leaf3e
+    neighbors:
+    - neighbor_device: campus-leaf3a
+      neighbor_port: Ethernet98/1
+      port: Ethernet97/1
+    result_overwrite:
+      custom_field: 'Local: Ethernet97/1 - Remote: campus-leaf3a Ethernet98/1'
+- VerifyLLDPNeighbors:
+    filters:
+      tags:
+      - campus-leaf3e
+    neighbors:
+    - neighbor_device: campus-leaf3b
+      neighbor_port: Ethernet98/1
+      port: Ethernet97/2
+    result_overwrite:
+      custom_field: 'Local: Ethernet97/2 - Remote: campus-leaf3b Ethernet98/1'
+- VerifyReachability:
+    filters:
+      tags:
+      - campus-leaf3e
+    hosts:
+    - destination: 172.16.1.1
+      repeat: 1
+      source: 10.10.10.13
+      vrf: default
+    result_overwrite:
+      custom_field: 'Source: Inband MGMT SVI Vlan10 (IP: 10.10.10.13) - Destination: campus-spine1 Loopback0 (IP: 172.16.1.1)'
+- VerifyReachability:
+    filters:
+      tags:
+      - campus-leaf3e
+    hosts:
+    - destination: 172.16.1.2
+      repeat: 1
+      source: 10.10.10.13
+      vrf: default
+    result_overwrite:
+      custom_field: 'Source: Inband MGMT SVI Vlan10 (IP: 10.10.10.13) - Destination: campus-spine2 Loopback0 (IP: 172.16.1.2)'
+- VerifyLLDPNeighbors:
+    filters:
+      tags:
+      - campus-leaf1b
+    neighbors:
+    - neighbor_device: campus-leaf1a
+      neighbor_port: Ethernet53
+      port: Ethernet53
+    result_overwrite:
+      custom_field: 'Local: Ethernet53 - Remote: campus-leaf1a Ethernet53'
+- VerifyLLDPNeighbors:
+    filters:
+      tags:
+      - campus-leaf1b
+    neighbors:
+    - neighbor_device: campus-leaf1a
+      neighbor_port: Ethernet54
+      port: Ethernet54
+    result_overwrite:
+      custom_field: 'Local: Ethernet54 - Remote: campus-leaf1a Ethernet54'
+- VerifyLLDPNeighbors:
+    filters:
+      tags:
+      - campus-leaf1b
+    neighbors:
+    - neighbor_device: campus-spine2
+      neighbor_port: Ethernet1
+      port: Ethernet51
+    result_overwrite:
+      custom_field: 'Local: Ethernet51 - Remote: campus-spine2 Ethernet1'
+- VerifyReachability:
+    filters:
+      tags:
+      - campus-leaf1b
+    hosts:
+    - destination: 172.16.1.1
+      repeat: 1
+      source: 10.10.10.7
+      vrf: default
+    result_overwrite:
+      custom_field: 'Source: Inband MGMT SVI Vlan10 (IP: 10.10.10.7) - Destination: campus-spine1 Loopback0 (IP: 172.16.1.1)'
+- VerifyReachability:
+    filters:
+      tags:
+      - campus-leaf1b
+    hosts:
+    - destination: 172.16.1.2
+      repeat: 1
+      source: 10.10.10.7
+      vrf: default
+    result_overwrite:
+      custom_field: 'Source: Inband MGMT SVI Vlan10 (IP: 10.10.10.7) - Destination: campus-spine2 Loopback0 (IP: 172.16.1.2)'
+- VerifyLLDPNeighbors:
+    filters:
+      tags:
+      - campus-leaf3b
+    neighbors:
+    - neighbor_device: campus-leaf3a
+      neighbor_port: Ethernet98/3
+      port: Ethernet98/3
+    result_overwrite:
+      custom_field: 'Local: Ethernet98/3 - Remote: campus-leaf3a Ethernet98/3'
+- VerifyLLDPNeighbors:
+    filters:
+      tags:
+      - campus-leaf3b
+    neighbors:
+    - neighbor_device: campus-leaf3a
+      neighbor_port: Ethernet98/4
+      port: Ethernet98/4
+    result_overwrite:
+      custom_field: 'Local: Ethernet98/4 - Remote: campus-leaf3a Ethernet98/4'
+- VerifyLLDPNeighbors:
+    filters:
+      tags:
+      - campus-leaf3b
+    neighbors:
+    - neighbor_device: campus-spine1
+      neighbor_port: Ethernet51/1
+      port: Ethernet97/1
+    result_overwrite:
+      custom_field: 'Local: Ethernet97/1 - Remote: campus-spine1 Ethernet51/1'
+- VerifyLLDPNeighbors:
+    filters:
+      tags:
+      - campus-leaf3b
+    neighbors:
+    - neighbor_device: campus-spine2
+      neighbor_port: Ethernet51/1
+      port: Ethernet97/2
+    result_overwrite:
+      custom_field: 'Local: Ethernet97/2 - Remote: campus-spine2 Ethernet51/1'
+- VerifyLLDPNeighbors:
+    filters:
+      tags:
+      - campus-leaf3b
+    neighbors:
+    - neighbor_device: campus-leaf3c
+      neighbor_port: Ethernet97/2
+      port: Ethernet97/3
+    result_overwrite:
+      custom_field: 'Local: Ethernet97/3 - Remote: campus-leaf3c Ethernet97/2'
+- VerifyLLDPNeighbors:
+    filters:
+      tags:
+      - campus-leaf3b
+    neighbors:
+    - neighbor_device: campus-leaf3d
+      neighbor_port: Ethernet97/2
+      port: Ethernet97/4
+    result_overwrite:
+      custom_field: 'Local: Ethernet97/4 - Remote: campus-leaf3d Ethernet97/2'
+- VerifyLLDPNeighbors:
+    filters:
+      tags:
+      - campus-leaf3b
+    neighbors:
+    - neighbor_device: campus-leaf3e
+      neighbor_port: Ethernet97/2
+      port: Ethernet98/1
+    result_overwrite:
+      custom_field: 'Local: Ethernet98/1 - Remote: campus-leaf3e Ethernet97/2'
+- VerifyReachability:
+    filters:
+      tags:
+      - campus-leaf3b
+    hosts:
+    - destination: 172.16.1.1
+      repeat: 1
+      source: 10.10.10.10
+      vrf: default
+    result_overwrite:
+      custom_field: 'Source: Inband MGMT SVI Vlan10 (IP: 10.10.10.10) - Destination: campus-spine1 Loopback0 (IP: 172.16.1.1)'
+- VerifyReachability:
+    filters:
+      tags:
+      - campus-leaf3b
+    hosts:
+    - destination: 172.16.1.2
+      repeat: 1
+      source: 10.10.10.10
+      vrf: default
+    result_overwrite:
+      custom_field: 'Source: Inband MGMT SVI Vlan10 (IP: 10.10.10.10) - Destination: campus-spine2 Loopback0 (IP: 172.16.1.2)'
+- VerifyLLDPNeighbors:
+    filters:
+      tags:
+      - campus-spine1
+    neighbors:
+    - neighbor_device: campus-spine2
+      neighbor_port: Ethernet55/1
+      port: Ethernet55/1
+    result_overwrite:
+      custom_field: 'Local: Ethernet55/1 - Remote: campus-spine2 Ethernet55/1'
+- VerifyLLDPNeighbors:
+    filters:
+      tags:
+      - campus-spine1
+    neighbors:
+    - neighbor_device: campus-spine2
+      neighbor_port: Ethernet56/1
+      port: Ethernet56/1
+    result_overwrite:
+      custom_field: 'Local: Ethernet56/1 - Remote: campus-spine2 Ethernet56/1'
+- VerifyLLDPNeighbors:
+    filters:
+      tags:
+      - campus-spine1
+    neighbors:
+    - neighbor_device: campus-leaf1a
+      neighbor_port: Ethernet51
+      port: Ethernet1
+    result_overwrite:
+      custom_field: 'Local: Ethernet1 - Remote: campus-leaf1a Ethernet51'
+- VerifyLLDPNeighbors:
+    filters:
+      tags:
+      - campus-spine1
+    neighbors:
+    - neighbor_device: campus-leaf2a
+      neighbor_port: Ethernet1/1
+      port: Ethernet49/1
+    result_overwrite:
+      custom_field: 'Local: Ethernet49/1 - Remote: campus-leaf2a Ethernet1/1'
+- VerifyLLDPNeighbors:
+    filters:
+      tags:
+      - campus-spine1
+    neighbors:
+    - neighbor_device: campus-leaf3a
+      neighbor_port: Ethernet97/1
+      port: Ethernet50/1
+    result_overwrite:
+      custom_field: 'Local: Ethernet50/1 - Remote: campus-leaf3a Ethernet97/1'
+- VerifyLLDPNeighbors:
+    filters:
+      tags:
+      - campus-spine1
+    neighbors:
+    - neighbor_device: campus-leaf3b
+      neighbor_port: Ethernet97/1
+      port: Ethernet51/1
+    result_overwrite:
+      custom_field: 'Local: Ethernet51/1 - Remote: campus-leaf3b Ethernet97/1'
+- VerifyLLDPNeighbors:
+    filters:
+      tags:
+      - campus-leaf3a
+    neighbors:
+    - neighbor_device: campus-leaf3b
+      neighbor_port: Ethernet98/3
+      port: Ethernet98/3
+    result_overwrite:
+      custom_field: 'Local: Ethernet98/3 - Remote: campus-leaf3b Ethernet98/3'
+- VerifyLLDPNeighbors:
+    filters:
+      tags:
+      - campus-leaf3a
+    neighbors:
+    - neighbor_device: campus-leaf3b
+      neighbor_port: Ethernet98/4
+      port: Ethernet98/4
+    result_overwrite:
+      custom_field: 'Local: Ethernet98/4 - Remote: campus-leaf3b Ethernet98/4'
+- VerifyLLDPNeighbors:
+    filters:
+      tags:
+      - campus-leaf3a
+    neighbors:
+    - neighbor_device: campus-spine1
+      neighbor_port: Ethernet50/1
+      port: Ethernet97/1
+    result_overwrite:
+      custom_field: 'Local: Ethernet97/1 - Remote: campus-spine1 Ethernet50/1'
+- VerifyLLDPNeighbors:
+    filters:
+      tags:
+      - campus-leaf3a
+    neighbors:
+    - neighbor_device: campus-spine2
+      neighbor_port: Ethernet50/1
+      port: Ethernet97/2
+    result_overwrite:
+      custom_field: 'Local: Ethernet97/2 - Remote: campus-spine2 Ethernet50/1'
+- VerifyLLDPNeighbors:
+    filters:
+      tags:
+      - campus-leaf3a
+    neighbors:
+    - neighbor_device: campus-leaf3c
+      neighbor_port: Ethernet97/1
+      port: Ethernet97/3
+    result_overwrite:
+      custom_field: 'Local: Ethernet97/3 - Remote: campus-leaf3c Ethernet97/1'
+- VerifyLLDPNeighbors:
+    filters:
+      tags:
+      - campus-leaf3a
+    neighbors:
+    - neighbor_device: campus-leaf3d
+      neighbor_port: Ethernet97/1
+      port: Ethernet97/4
+    result_overwrite:
+      custom_field: 'Local: Ethernet97/4 - Remote: campus-leaf3d Ethernet97/1'
+- VerifyLLDPNeighbors:
+    filters:
+      tags:
+      - campus-leaf3a
+    neighbors:
+    - neighbor_device: campus-leaf3e
+      neighbor_port: Ethernet97/1
+      port: Ethernet98/1
+    result_overwrite:
+      custom_field: 'Local: Ethernet98/1 - Remote: campus-leaf3e Ethernet97/1'
+- VerifyReachability:
+    filters:
+      tags:
+      - campus-leaf3a
+    hosts:
+    - destination: 172.16.1.1
+      repeat: 1
+      source: 10.10.10.9
+      vrf: default
+    result_overwrite:
+      custom_field: 'Source: Inband MGMT SVI Vlan10 (IP: 10.10.10.9) - Destination: campus-spine1 Loopback0 (IP: 172.16.1.1)'
+- VerifyReachability:
+    filters:
+      tags:
+      - campus-leaf3a
+    hosts:
+    - destination: 172.16.1.2
+      repeat: 1
+      source: 10.10.10.9
+      vrf: default
+    result_overwrite:
+      custom_field: 'Source: Inband MGMT SVI Vlan10 (IP: 10.10.10.9) - Destination: campus-spine2 Loopback0 (IP: 172.16.1.2)'
+- VerifyLLDPNeighbors:
+    filters:
+      tags:
+      - campus-spine2
+    neighbors:
+    - neighbor_device: campus-spine1
+      neighbor_port: Ethernet55/1
+      port: Ethernet55/1
+    result_overwrite:
+      custom_field: 'Local: Ethernet55/1 - Remote: campus-spine1 Ethernet55/1'
+- VerifyLLDPNeighbors:
+    filters:
+      tags:
+      - campus-spine2
+    neighbors:
+    - neighbor_device: campus-spine1
+      neighbor_port: Ethernet56/1
+      port: Ethernet56/1
+    result_overwrite:
+      custom_field: 'Local: Ethernet56/1 - Remote: campus-spine1 Ethernet56/1'
+- VerifyLLDPNeighbors:
+    filters:
+      tags:
+      - campus-spine2
+    neighbors:
+    - neighbor_device: campus-leaf1b
+      neighbor_port: Ethernet51
+      port: Ethernet1
+    result_overwrite:
+      custom_field: 'Local: Ethernet1 - Remote: campus-leaf1b Ethernet51'
+- VerifyLLDPNeighbors:
+    filters:
+      tags:
+      - campus-spine2
+    neighbors:
+    - neighbor_device: campus-leaf2a
+      neighbor_port: Ethernet2/1
+      port: Ethernet49/1
+    result_overwrite:
+      custom_field: 'Local: Ethernet49/1 - Remote: campus-leaf2a Ethernet2/1'
+- VerifyLLDPNeighbors:
+    filters:
+      tags:
+      - campus-spine2
+    neighbors:
+    - neighbor_device: campus-leaf3a
+      neighbor_port: Ethernet97/2
+      port: Ethernet50/1
+    result_overwrite:
+      custom_field: 'Local: Ethernet50/1 - Remote: campus-leaf3a Ethernet97/2'
+- VerifyLLDPNeighbors:
+    filters:
+      tags:
+      - campus-spine2
+    neighbors:
+    - neighbor_device: campus-leaf3b
+      neighbor_port: Ethernet97/2
+      port: Ethernet51/1
+    result_overwrite:
+      custom_field: 'Local: Ethernet51/1 - Remote: campus-leaf3b Ethernet97/2'
+- VerifyLLDPNeighbors:
+    filters:
+      tags:
+      - campus-leaf3d
+    neighbors:
+    - neighbor_device: campus-leaf3a
+      neighbor_port: Ethernet97/4
+      port: Ethernet97/1
+    result_overwrite:
+      custom_field: 'Local: Ethernet97/1 - Remote: campus-leaf3a Ethernet97/4'
+- VerifyLLDPNeighbors:
+    filters:
+      tags:
+      - campus-leaf3d
+    neighbors:
+    - neighbor_device: campus-leaf3b
+      neighbor_port: Ethernet97/4
+      port: Ethernet97/2
+    result_overwrite:
+      custom_field: 'Local: Ethernet97/2 - Remote: campus-leaf3b Ethernet97/4'
+- VerifyReachability:
+    filters:
+      tags:
+      - campus-leaf3d
+    hosts:
+    - destination: 172.16.1.1
+      repeat: 1
+      source: 10.10.10.12
+      vrf: default
+    result_overwrite:
+      custom_field: 'Source: Inband MGMT SVI Vlan10 (IP: 10.10.10.12) - Destination: campus-spine1 Loopback0 (IP: 172.16.1.1)'
+- VerifyReachability:
+    filters:
+      tags:
+      - campus-leaf3d
+    hosts:
+    - destination: 172.16.1.2
+      repeat: 1
+      source: 10.10.10.12
+      vrf: default
+    result_overwrite:
+      custom_field: 'Source: Inband MGMT SVI Vlan10 (IP: 10.10.10.12) - Destination: campus-spine2 Loopback0 (IP: 172.16.1.2)'
+- VerifyLLDPNeighbors:
+    filters:
+      tags:
+      - campus-leaf2a
+    neighbors:
+    - neighbor_device: campus-spine1
+      neighbor_port: Ethernet49/1
+      port: Ethernet1/1
+    result_overwrite:
+      custom_field: 'Local: Ethernet1/1 - Remote: campus-spine1 Ethernet49/1'
+- VerifyLLDPNeighbors:
+    filters:
+      tags:
+      - campus-leaf2a
+    neighbors:
+    - neighbor_device: campus-spine2
+      neighbor_port: Ethernet49/1
+      port: Ethernet2/1
+    result_overwrite:
+      custom_field: 'Local: Ethernet2/1 - Remote: campus-spine2 Ethernet49/1'
+- VerifyReachability:
+    filters:
+      tags:
+      - campus-leaf2a
+    hosts:
+    - destination: 172.16.1.1
+      repeat: 1
+      source: 10.10.10.8
+      vrf: default
+    result_overwrite:
+      custom_field: 'Source: Inband MGMT SVI Vlan10 (IP: 10.10.10.8) - Destination: campus-spine1 Loopback0 (IP: 172.16.1.1)'
+- VerifyReachability:
+    filters:
+      tags:
+      - campus-leaf2a
+    hosts:
+    - destination: 172.16.1.2
+      repeat: 1
+      source: 10.10.10.8
+      vrf: default
+    result_overwrite:
+      custom_field: 'Source: Inband MGMT SVI Vlan10 (IP: 10.10.10.8) - Destination: campus-spine2 Loopback0 (IP: 172.16.1.2)'
+- VerifyLLDPNeighbors:
+    filters:
+      tags:
+      - campus-leaf3c
+    neighbors:
+    - neighbor_device: campus-leaf3a
+      neighbor_port: Ethernet97/3
+      port: Ethernet97/1
+    result_overwrite:
+      custom_field: 'Local: Ethernet97/1 - Remote: campus-leaf3a Ethernet97/3'
+- VerifyLLDPNeighbors:
+    filters:
+      tags:
+      - campus-leaf3c
+    neighbors:
+    - neighbor_device: campus-leaf3b
+      neighbor_port: Ethernet97/3
+      port: Ethernet97/2
+    result_overwrite:
+      custom_field: 'Local: Ethernet97/2 - Remote: campus-leaf3b Ethernet97/3'
+- VerifyReachability:
+    filters:
+      tags:
+      - campus-leaf3c
+    hosts:
+    - destination: 172.16.1.1
+      repeat: 1
+      source: 10.10.10.11
+      vrf: default
+    result_overwrite:
+      custom_field: 'Source: Inband MGMT SVI Vlan10 (IP: 10.10.10.11) - Destination: campus-spine1 Loopback0 (IP: 172.16.1.1)'
+- VerifyReachability:
+    filters:
+      tags:
+      - campus-leaf3c
+    hosts:
+    - destination: 172.16.1.2
+      repeat: 1
+      source: 10.10.10.11
+      vrf: default
+    result_overwrite:
+      custom_field: 'Source: Inband MGMT SVI Vlan10 (IP: 10.10.10.11) - Destination: campus-spine2 Loopback0 (IP: 172.16.1.2)'
+- VerifyLLDPNeighbors:
+    filters:
+      tags:
+      - campus-leaf1a
+    neighbors:
+    - neighbor_device: campus-leaf1b
+      neighbor_port: Ethernet53
+      port: Ethernet53
+    result_overwrite:
+      custom_field: 'Local: Ethernet53 - Remote: campus-leaf1b Ethernet53'
+- VerifyLLDPNeighbors:
+    filters:
+      tags:
+      - campus-leaf1a
+    neighbors:
+    - neighbor_device: campus-leaf1b
+      neighbor_port: Ethernet54
+      port: Ethernet54
+    result_overwrite:
+      custom_field: 'Local: Ethernet54 - Remote: campus-leaf1b Ethernet54'
+- VerifyLLDPNeighbors:
+    filters:
+      tags:
+      - campus-leaf1a
+    neighbors:
+    - neighbor_device: campus-spine1
+      neighbor_port: Ethernet1
+      port: Ethernet51
+    result_overwrite:
+      custom_field: 'Local: Ethernet51 - Remote: campus-spine1 Ethernet1'
+- VerifyReachability:
+    filters:
+      tags:
+      - campus-leaf1a
+    hosts:
+    - destination: 172.16.1.1
+      repeat: 1
+      source: 10.10.10.6
+      vrf: default
+    result_overwrite:
+      custom_field: 'Source: Inband MGMT SVI Vlan10 (IP: 10.10.10.6) - Destination: campus-spine1 Loopback0 (IP: 172.16.1.1)'
+- VerifyReachability:
+    filters:
+      tags:
+      - campus-leaf1a
+    hosts:
+    - destination: 172.16.1.2
+      repeat: 1
+      source: 10.10.10.6
+      vrf: default
+    result_overwrite:
+      custom_field: 'Source: Inband MGMT SVI Vlan10 (IP: 10.10.10.6) - Destination: campus-spine2 Loopback0 (IP: 172.16.1.2)'
+anta.tests.interfaces:
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-leaf3e
+    interfaces:
+    - name: Ethernet97/1
+      status: up
+    result_overwrite:
+      custom_field: Interface Ethernet97/1 - CAMPUS-LEAF3A_Ethernet98/1 = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-leaf3e
+    interfaces:
+    - name: Ethernet97/2
+      status: up
+    result_overwrite:
+      custom_field: Interface Ethernet97/2 - CAMPUS-LEAF3B_Ethernet98/1 = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-leaf3e
+    interfaces:
+    - name: Port-Channel971
+      status: up
+    result_overwrite:
+      custom_field: Interface Port-Channel971 - IDF3_AGG_Po981 = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-leaf3e
+    interfaces:
+    - name: Vlan10
+      status: up
+    result_overwrite:
+      custom_field: Interface Vlan10 - Inband Management = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-leaf1b
+    interfaces:
+    - name: Ethernet53
+      status: up
+    result_overwrite:
+      custom_field: Interface Ethernet53 - MLAG_PEER_campus-leaf1a_Ethernet53 = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-leaf1b
+    interfaces:
+    - name: Ethernet54
+      status: up
+    result_overwrite:
+      custom_field: Interface Ethernet54 - MLAG_PEER_campus-leaf1a_Ethernet54 = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-leaf1b
+    interfaces:
+    - name: Ethernet51
+      status: up
+    result_overwrite:
+      custom_field: Interface Ethernet51 - CAMPUS-SPINE2_Ethernet1 = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-leaf1b
+    interfaces:
+    - name: Port-Channel53
+      status: up
+    result_overwrite:
+      custom_field: Interface Port-Channel53 - MLAG_PEER_campus-leaf1a_Po53 = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-leaf1b
+    interfaces:
+    - name: Port-Channel51
+      status: up
+    result_overwrite:
+      custom_field: Interface Port-Channel51 - SPINES_Po1 = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-leaf1b
+    interfaces:
+    - name: Vlan4094
+      status: up
+    result_overwrite:
+      custom_field: Interface Vlan4094 - MLAG_PEER = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-leaf1b
+    interfaces:
+    - name: Vlan10
+      status: up
+    result_overwrite:
+      custom_field: Interface Vlan10 - Inband Management = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-leaf3b
+    interfaces:
+    - name: Ethernet98/3
+      status: up
+    result_overwrite:
+      custom_field: Interface Ethernet98/3 - MLAG_PEER_campus-leaf3a_Ethernet98/3 = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-leaf3b
+    interfaces:
+    - name: Ethernet98/4
+      status: up
+    result_overwrite:
+      custom_field: Interface Ethernet98/4 - MLAG_PEER_campus-leaf3a_Ethernet98/4 = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-leaf3b
+    interfaces:
+    - name: Ethernet97/1
+      status: up
+    result_overwrite:
+      custom_field: Interface Ethernet97/1 - CAMPUS-SPINE1_Ethernet51/1 = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-leaf3b
+    interfaces:
+    - name: Ethernet97/2
+      status: up
+    result_overwrite:
+      custom_field: Interface Ethernet97/2 - CAMPUS-SPINE2_Ethernet51/1 = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-leaf3b
+    interfaces:
+    - name: Ethernet97/3
+      status: up
+    result_overwrite:
+      custom_field: Interface Ethernet97/3 - CAMPUS-LEAF3C_Ethernet97/2 = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-leaf3b
+    interfaces:
+    - name: Ethernet97/4
+      status: up
+    result_overwrite:
+      custom_field: Interface Ethernet97/4 - CAMPUS-LEAF3D_Ethernet97/2 = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-leaf3b
+    interfaces:
+    - name: Ethernet98/1
+      status: up
+    result_overwrite:
+      custom_field: Interface Ethernet98/1 - CAMPUS-LEAF3E_Ethernet97/2 = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-leaf3b
+    interfaces:
+    - name: Port-Channel983
+      status: up
+    result_overwrite:
+      custom_field: Interface Port-Channel983 - MLAG_PEER_campus-leaf3a_Po983 = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-leaf3b
+    interfaces:
+    - name: Port-Channel971
+      status: up
+    result_overwrite:
+      custom_field: Interface Port-Channel971 - SPINES_Po501 = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-leaf3b
+    interfaces:
+    - name: Port-Channel973
+      status: up
+    result_overwrite:
+      custom_field: Interface Port-Channel973 - CAMPUS-LEAF3C_Po971 = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-leaf3b
+    interfaces:
+    - name: Port-Channel974
+      status: up
+    result_overwrite:
+      custom_field: Interface Port-Channel974 - CAMPUS-LEAF3D_Po971 = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-leaf3b
+    interfaces:
+    - name: Port-Channel981
+      status: up
+    result_overwrite:
+      custom_field: Interface Port-Channel981 - CAMPUS-LEAF3E_Po971 = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-leaf3b
+    interfaces:
+    - name: Vlan4094
+      status: up
+    result_overwrite:
+      custom_field: Interface Vlan4094 - MLAG_PEER = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-leaf3b
+    interfaces:
+    - name: Vlan10
+      status: up
+    result_overwrite:
+      custom_field: Interface Vlan10 - Inband Management = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-spine1
+    interfaces:
+    - name: Ethernet55/1
+      status: up
+    result_overwrite:
+      custom_field: Interface Ethernet55/1 - MLAG_PEER_campus-spine2_Ethernet55/1 = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-spine1
+    interfaces:
+    - name: Ethernet56/1
+      status: up
+    result_overwrite:
+      custom_field: Interface Ethernet56/1 - MLAG_PEER_campus-spine2_Ethernet56/1 = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-spine1
+    interfaces:
+    - name: Ethernet1
+      status: up
+    result_overwrite:
+      custom_field: Interface Ethernet1 - CAMPUS-LEAF1A_Ethernet51 = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-spine1
+    interfaces:
+    - name: Ethernet49/1
+      status: up
+    result_overwrite:
+      custom_field: Interface Ethernet49/1 - CAMPUS-LEAF2A_Ethernet1/1 = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-spine1
+    interfaces:
+    - name: Ethernet50/1
+      status: up
+    result_overwrite:
+      custom_field: Interface Ethernet50/1 - CAMPUS-LEAF3A_Ethernet97/1 = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-spine1
+    interfaces:
+    - name: Ethernet51/1
+      status: up
+    result_overwrite:
+      custom_field: Interface Ethernet51/1 - CAMPUS-LEAF3B_Ethernet97/1 = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-spine1
+    interfaces:
+    - name: Port-Channel551
+      status: up
+    result_overwrite:
+      custom_field: Interface Port-Channel551 - MLAG_PEER_campus-spine2_Po551 = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-spine1
+    interfaces:
+    - name: Port-Channel1
+      status: up
+    result_overwrite:
+      custom_field: Interface Port-Channel1 - IDF1_Po51 = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-spine1
+    interfaces:
+    - name: Port-Channel491
+      status: up
+    result_overwrite:
+      custom_field: Interface Port-Channel491 - CAMPUS-LEAF2A_Po11 = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-spine1
+    interfaces:
+    - name: Port-Channel501
+      status: up
+    result_overwrite:
+      custom_field: Interface Port-Channel501 - IDF3_AGG_Po971 = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-spine1
+    interfaces:
+    - name: Vlan4093
+      status: up
+    result_overwrite:
+      custom_field: Interface Vlan4093 - MLAG_PEER_L3_PEERING = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-spine1
+    interfaces:
+    - name: Vlan4094
+      status: up
+    result_overwrite:
+      custom_field: Interface Vlan4094 - MLAG_PEER = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-spine1
+    interfaces:
+    - name: Vlan110
+      status: up
+    result_overwrite:
+      custom_field: Interface Vlan110 - IDF1-Data = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-spine1
+    interfaces:
+    - name: Vlan120
+      status: up
+    result_overwrite:
+      custom_field: Interface Vlan120 - IDF1-Voice = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-spine1
+    interfaces:
+    - name: Vlan130
+      status: up
+    result_overwrite:
+      custom_field: Interface Vlan130 - IDF1-Guest = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-spine1
+    interfaces:
+    - name: Vlan210
+      status: up
+    result_overwrite:
+      custom_field: Interface Vlan210 - IDF2-Data = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-spine1
+    interfaces:
+    - name: Vlan220
+      status: up
+    result_overwrite:
+      custom_field: Interface Vlan220 - IDF2-Voice = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-spine1
+    interfaces:
+    - name: Vlan230
+      status: up
+    result_overwrite:
+      custom_field: Interface Vlan230 - IDF2-Guest = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-spine1
+    interfaces:
+    - name: Vlan310
+      status: up
+    result_overwrite:
+      custom_field: Interface Vlan310 - IDF3-Data = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-spine1
+    interfaces:
+    - name: Vlan320
+      status: up
+    result_overwrite:
+      custom_field: Interface Vlan320 - IDF3-Voice = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-spine1
+    interfaces:
+    - name: Vlan330
+      status: up
+    result_overwrite:
+      custom_field: Interface Vlan330 - IDF3-Guest = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-spine1
+    interfaces:
+    - name: Vlan10
+      status: up
+    result_overwrite:
+      custom_field: Interface Vlan10 - Inband Management = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-spine1
+    interfaces:
+    - name: Loopback0
+      status: up
+    result_overwrite:
+      custom_field: Interface Loopback0 - Router_ID = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-leaf3a
+    interfaces:
+    - name: Ethernet98/3
+      status: up
+    result_overwrite:
+      custom_field: Interface Ethernet98/3 - MLAG_PEER_campus-leaf3b_Ethernet98/3 = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-leaf3a
+    interfaces:
+    - name: Ethernet98/4
+      status: up
+    result_overwrite:
+      custom_field: Interface Ethernet98/4 - MLAG_PEER_campus-leaf3b_Ethernet98/4 = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-leaf3a
+    interfaces:
+    - name: Ethernet97/1
+      status: up
+    result_overwrite:
+      custom_field: Interface Ethernet97/1 - CAMPUS-SPINE1_Ethernet50/1 = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-leaf3a
+    interfaces:
+    - name: Ethernet97/2
+      status: up
+    result_overwrite:
+      custom_field: Interface Ethernet97/2 - CAMPUS-SPINE2_Ethernet50/1 = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-leaf3a
+    interfaces:
+    - name: Ethernet97/3
+      status: up
+    result_overwrite:
+      custom_field: Interface Ethernet97/3 - CAMPUS-LEAF3C_Ethernet97/1 = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-leaf3a
+    interfaces:
+    - name: Ethernet97/4
+      status: up
+    result_overwrite:
+      custom_field: Interface Ethernet97/4 - CAMPUS-LEAF3D_Ethernet97/1 = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-leaf3a
+    interfaces:
+    - name: Ethernet98/1
+      status: up
+    result_overwrite:
+      custom_field: Interface Ethernet98/1 - CAMPUS-LEAF3E_Ethernet97/1 = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-leaf3a
+    interfaces:
+    - name: Port-Channel983
+      status: up
+    result_overwrite:
+      custom_field: Interface Port-Channel983 - MLAG_PEER_campus-leaf3b_Po983 = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-leaf3a
+    interfaces:
+    - name: Port-Channel971
+      status: up
+    result_overwrite:
+      custom_field: Interface Port-Channel971 - SPINES_Po501 = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-leaf3a
+    interfaces:
+    - name: Port-Channel973
+      status: up
+    result_overwrite:
+      custom_field: Interface Port-Channel973 - CAMPUS-LEAF3C_Po971 = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-leaf3a
+    interfaces:
+    - name: Port-Channel974
+      status: up
+    result_overwrite:
+      custom_field: Interface Port-Channel974 - CAMPUS-LEAF3D_Po971 = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-leaf3a
+    interfaces:
+    - name: Port-Channel981
+      status: up
+    result_overwrite:
+      custom_field: Interface Port-Channel981 - CAMPUS-LEAF3E_Po971 = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-leaf3a
+    interfaces:
+    - name: Vlan4094
+      status: up
+    result_overwrite:
+      custom_field: Interface Vlan4094 - MLAG_PEER = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-leaf3a
+    interfaces:
+    - name: Vlan10
+      status: up
+    result_overwrite:
+      custom_field: Interface Vlan10 - Inband Management = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-spine2
+    interfaces:
+    - name: Ethernet55/1
+      status: up
+    result_overwrite:
+      custom_field: Interface Ethernet55/1 - MLAG_PEER_campus-spine1_Ethernet55/1 = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-spine2
+    interfaces:
+    - name: Ethernet56/1
+      status: up
+    result_overwrite:
+      custom_field: Interface Ethernet56/1 - MLAG_PEER_campus-spine1_Ethernet56/1 = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-spine2
+    interfaces:
+    - name: Ethernet1
+      status: up
+    result_overwrite:
+      custom_field: Interface Ethernet1 - CAMPUS-LEAF1B_Ethernet51 = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-spine2
+    interfaces:
+    - name: Ethernet49/1
+      status: up
+    result_overwrite:
+      custom_field: Interface Ethernet49/1 - CAMPUS-LEAF2A_Ethernet2/1 = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-spine2
+    interfaces:
+    - name: Ethernet50/1
+      status: up
+    result_overwrite:
+      custom_field: Interface Ethernet50/1 - CAMPUS-LEAF3A_Ethernet97/2 = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-spine2
+    interfaces:
+    - name: Ethernet51/1
+      status: up
+    result_overwrite:
+      custom_field: Interface Ethernet51/1 - CAMPUS-LEAF3B_Ethernet97/2 = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-spine2
+    interfaces:
+    - name: Port-Channel551
+      status: up
+    result_overwrite:
+      custom_field: Interface Port-Channel551 - MLAG_PEER_campus-spine1_Po551 = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-spine2
+    interfaces:
+    - name: Port-Channel1
+      status: up
+    result_overwrite:
+      custom_field: Interface Port-Channel1 - IDF1_Po51 = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-spine2
+    interfaces:
+    - name: Port-Channel491
+      status: up
+    result_overwrite:
+      custom_field: Interface Port-Channel491 - CAMPUS-LEAF2A_Po11 = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-spine2
+    interfaces:
+    - name: Port-Channel501
+      status: up
+    result_overwrite:
+      custom_field: Interface Port-Channel501 - IDF3_AGG_Po971 = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-spine2
+    interfaces:
+    - name: Vlan4093
+      status: up
+    result_overwrite:
+      custom_field: Interface Vlan4093 - MLAG_PEER_L3_PEERING = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-spine2
+    interfaces:
+    - name: Vlan4094
+      status: up
+    result_overwrite:
+      custom_field: Interface Vlan4094 - MLAG_PEER = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-spine2
+    interfaces:
+    - name: Vlan110
+      status: up
+    result_overwrite:
+      custom_field: Interface Vlan110 - IDF1-Data = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-spine2
+    interfaces:
+    - name: Vlan120
+      status: up
+    result_overwrite:
+      custom_field: Interface Vlan120 - IDF1-Voice = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-spine2
+    interfaces:
+    - name: Vlan130
+      status: up
+    result_overwrite:
+      custom_field: Interface Vlan130 - IDF1-Guest = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-spine2
+    interfaces:
+    - name: Vlan210
+      status: up
+    result_overwrite:
+      custom_field: Interface Vlan210 - IDF2-Data = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-spine2
+    interfaces:
+    - name: Vlan220
+      status: up
+    result_overwrite:
+      custom_field: Interface Vlan220 - IDF2-Voice = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-spine2
+    interfaces:
+    - name: Vlan230
+      status: up
+    result_overwrite:
+      custom_field: Interface Vlan230 - IDF2-Guest = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-spine2
+    interfaces:
+    - name: Vlan310
+      status: up
+    result_overwrite:
+      custom_field: Interface Vlan310 - IDF3-Data = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-spine2
+    interfaces:
+    - name: Vlan320
+      status: up
+    result_overwrite:
+      custom_field: Interface Vlan320 - IDF3-Voice = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-spine2
+    interfaces:
+    - name: Vlan330
+      status: up
+    result_overwrite:
+      custom_field: Interface Vlan330 - IDF3-Guest = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-spine2
+    interfaces:
+    - name: Vlan10
+      status: up
+    result_overwrite:
+      custom_field: Interface Vlan10 - Inband Management = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-spine2
+    interfaces:
+    - name: Loopback0
+      status: up
+    result_overwrite:
+      custom_field: Interface Loopback0 - Router_ID = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-leaf3d
+    interfaces:
+    - name: Ethernet97/1
+      status: up
+    result_overwrite:
+      custom_field: Interface Ethernet97/1 - CAMPUS-LEAF3A_Ethernet97/4 = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-leaf3d
+    interfaces:
+    - name: Ethernet97/2
+      status: up
+    result_overwrite:
+      custom_field: Interface Ethernet97/2 - CAMPUS-LEAF3B_Ethernet97/4 = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-leaf3d
+    interfaces:
+    - name: Port-Channel971
+      status: up
+    result_overwrite:
+      custom_field: Interface Port-Channel971 - IDF3_AGG_Po974 = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-leaf3d
+    interfaces:
+    - name: Vlan10
+      status: up
+    result_overwrite:
+      custom_field: Interface Vlan10 - Inband Management = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-leaf2a
+    interfaces:
+    - name: Ethernet1/1
+      status: up
+    result_overwrite:
+      custom_field: Interface Ethernet1/1 - CAMPUS-SPINE1_Ethernet49/1 = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-leaf2a
+    interfaces:
+    - name: Ethernet2/1
+      status: up
+    result_overwrite:
+      custom_field: Interface Ethernet2/1 - CAMPUS-SPINE2_Ethernet49/1 = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-leaf2a
+    interfaces:
+    - name: Port-Channel11
+      status: up
+    result_overwrite:
+      custom_field: Interface Port-Channel11 - SPINES_Po491 = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-leaf2a
+    interfaces:
+    - name: Vlan10
+      status: up
+    result_overwrite:
+      custom_field: Interface Vlan10 - Inband Management = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-leaf3c
+    interfaces:
+    - name: Ethernet97/1
+      status: up
+    result_overwrite:
+      custom_field: Interface Ethernet97/1 - CAMPUS-LEAF3A_Ethernet97/3 = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-leaf3c
+    interfaces:
+    - name: Ethernet97/2
+      status: up
+    result_overwrite:
+      custom_field: Interface Ethernet97/2 - CAMPUS-LEAF3B_Ethernet97/3 = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-leaf3c
+    interfaces:
+    - name: Port-Channel971
+      status: up
+    result_overwrite:
+      custom_field: Interface Port-Channel971 - IDF3_AGG_Po973 = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-leaf3c
+    interfaces:
+    - name: Vlan10
+      status: up
+    result_overwrite:
+      custom_field: Interface Vlan10 - Inband Management = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-leaf1a
+    interfaces:
+    - name: Ethernet53
+      status: up
+    result_overwrite:
+      custom_field: Interface Ethernet53 - MLAG_PEER_campus-leaf1b_Ethernet53 = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-leaf1a
+    interfaces:
+    - name: Ethernet54
+      status: up
+    result_overwrite:
+      custom_field: Interface Ethernet54 - MLAG_PEER_campus-leaf1b_Ethernet54 = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-leaf1a
+    interfaces:
+    - name: Ethernet51
+      status: up
+    result_overwrite:
+      custom_field: Interface Ethernet51 - CAMPUS-SPINE1_Ethernet1 = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-leaf1a
+    interfaces:
+    - name: Port-Channel53
+      status: up
+    result_overwrite:
+      custom_field: Interface Port-Channel53 - MLAG_PEER_campus-leaf1b_Po53 = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-leaf1a
+    interfaces:
+    - name: Port-Channel51
+      status: up
+    result_overwrite:
+      custom_field: Interface Port-Channel51 - SPINES_Po1 = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-leaf1a
+    interfaces:
+    - name: Vlan4094
+      status: up
+    result_overwrite:
+      custom_field: Interface Vlan4094 - MLAG_PEER = 'up'
+- VerifyInterfacesStatus:
+    filters:
+      tags:
+      - campus-leaf1a
+    interfaces:
+    - name: Vlan10
+      status: up
+    result_overwrite:
+      custom_field: Interface Vlan10 - Inband Management = 'up'
+anta.tests.mlag:
+- VerifyMlagStatus:
+    filters:
+      tags:
+      - campus-leaf1b
+- VerifyMlagStatus:
+    filters:
+      tags:
+      - campus-leaf3b
+- VerifyMlagStatus:
+    filters:
+      tags:
+      - campus-spine1
+- VerifyMlagStatus:
+    filters:
+      tags:
+      - campus-leaf3a
+- VerifyMlagStatus:
+    filters:
+      tags:
+      - campus-spine2
+- VerifyMlagStatus:
+    filters:
+      tags:
+      - campus-leaf1a
+anta.tests.system:
+- VerifyNTP:
+    filters:
+      tags:
+      - campus-leaf3e
+- VerifyReloadCause:
+    filters:
+      tags:
+      - campus-leaf3e
+- VerifyNTP:
+    filters:
+      tags:
+      - campus-leaf1b
+- VerifyReloadCause:
+    filters:
+      tags:
+      - campus-leaf1b
+- VerifyNTP:
+    filters:
+      tags:
+      - campus-leaf3b
+- VerifyReloadCause:
+    filters:
+      tags:
+      - campus-leaf3b
+- VerifyNTP:
+    filters:
+      tags:
+      - campus-spine1
+- VerifyReloadCause:
+    filters:
+      tags:
+      - campus-spine1
+- VerifyNTP:
+    filters:
+      tags:
+      - campus-leaf3a
+- VerifyReloadCause:
+    filters:
+      tags:
+      - campus-leaf3a
+- VerifyNTP:
+    filters:
+      tags:
+      - campus-spine2
+- VerifyReloadCause:
+    filters:
+      tags:
+      - campus-spine2
+- VerifyNTP:
+    filters:
+      tags:
+      - campus-leaf3d
+- VerifyReloadCause:
+    filters:
+      tags:
+      - campus-leaf3d
+- VerifyNTP:
+    filters:
+      tags:
+      - campus-leaf2a
+- VerifyReloadCause:
+    filters:
+      tags:
+      - campus-leaf2a
+- VerifyNTP:
+    filters:
+      tags:
+      - campus-leaf3c
+- VerifyReloadCause:
+    filters:
+      tags:
+      - campus-leaf3c
+- VerifyNTP:
+    filters:
+      tags:
+      - campus-leaf1a
+- VerifyReloadCause:
+    filters:
+      tags:
+      - campus-leaf1a

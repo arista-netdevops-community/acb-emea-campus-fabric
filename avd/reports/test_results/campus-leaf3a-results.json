@@ -1,0 +1,259 @@
+[
+  {
+    "name": "campus-leaf3a",
+    "test": "VerifyLLDPNeighbors",
+    "categories": [
+      "connectivity"
+    ],
+    "description": "Verifies that the provided LLDP neighbors are connected properly.",
+    "result": "success",
+    "custom_field": "Local: Ethernet97/1 - Remote: campus-spine1 Ethernet50/1"
+  },
+  {
+    "name": "campus-leaf3a",
+    "test": "VerifyLLDPNeighbors",
+    "categories": [
+      "connectivity"
+    ],
+    "description": "Verifies that the provided LLDP neighbors are connected properly.",
+    "result": "success",
+    "custom_field": "Local: Ethernet97/2 - Remote: campus-spine2 Ethernet50/1"
+  },
+  {
+    "name": "campus-leaf3a",
+    "test": "VerifyLLDPNeighbors",
+    "categories": [
+      "connectivity"
+    ],
+    "description": "Verifies that the provided LLDP neighbors are connected properly.",
+    "result": "success",
+    "custom_field": "Local: Ethernet97/3 - Remote: campus-leaf3c Ethernet97/1"
+  },
+  {
+    "name": "campus-leaf3a",
+    "test": "VerifyLLDPNeighbors",
+    "categories": [
+      "connectivity"
+    ],
+    "description": "Verifies that the provided LLDP neighbors are connected properly.",
+    "result": "success",
+    "custom_field": "Local: Ethernet97/4 - Remote: campus-leaf3d Ethernet97/1"
+  },
+  {
+    "name": "campus-leaf3a",
+    "test": "VerifyLLDPNeighbors",
+    "categories": [
+      "connectivity"
+    ],
+    "description": "Verifies that the provided LLDP neighbors are connected properly.",
+    "result": "success",
+    "custom_field": "Local: Ethernet98/1 - Remote: campus-leaf3e Ethernet97/1"
+  },
+  {
+    "name": "campus-leaf3a",
+    "test": "VerifyLLDPNeighbors",
+    "categories": [
+      "connectivity"
+    ],
+    "description": "Verifies that the provided LLDP neighbors are connected properly.",
+    "result": "success",
+    "custom_field": "Local: Ethernet98/3 - Remote: campus-leaf3b Ethernet98/3"
+  },
+  {
+    "name": "campus-leaf3a",
+    "test": "VerifyLLDPNeighbors",
+    "categories": [
+      "connectivity"
+    ],
+    "description": "Verifies that the provided LLDP neighbors are connected properly.",
+    "result": "success",
+    "custom_field": "Local: Ethernet98/4 - Remote: campus-leaf3b Ethernet98/4"
+  },
+  {
+    "name": "campus-leaf3a",
+    "test": "VerifyReachability",
+    "categories": [
+      "connectivity"
+    ],
+    "description": "Test the network reachability to one or many destination IP(s).",
+    "result": "success",
+    "custom_field": "Source: Inband MGMT SVI Vlan10 (IP: 10.10.10.9) - Destination: campus-spine1 Loopback0 (IP: 172.16.1.1)"
+  },
+  {
+    "name": "campus-leaf3a",
+    "test": "VerifyReachability",
+    "categories": [
+      "connectivity"
+    ],
+    "description": "Test the network reachability to one or many destination IP(s).",
+    "result": "success",
+    "custom_field": "Source: Inband MGMT SVI Vlan10 (IP: 10.10.10.9) - Destination: campus-spine2 Loopback0 (IP: 172.16.1.2)"
+  },
+  {
+    "name": "campus-leaf3a",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Ethernet97/1 - CAMPUS-SPINE1_Ethernet50/1 = 'up'"
+  },
+  {
+    "name": "campus-leaf3a",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Ethernet97/2 - CAMPUS-SPINE2_Ethernet50/1 = 'up'"
+  },
+  {
+    "name": "campus-leaf3a",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Ethernet97/3 - CAMPUS-LEAF3C_Ethernet97/1 = 'up'"
+  },
+  {
+    "name": "campus-leaf3a",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Ethernet97/4 - CAMPUS-LEAF3D_Ethernet97/1 = 'up'"
+  },
+  {
+    "name": "campus-leaf3a",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Ethernet98/1 - CAMPUS-LEAF3E_Ethernet97/1 = 'up'"
+  },
+  {
+    "name": "campus-leaf3a",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Ethernet98/3 - MLAG_PEER_campus-leaf3b_Ethernet98/3 = 'up'"
+  },
+  {
+    "name": "campus-leaf3a",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Ethernet98/4 - MLAG_PEER_campus-leaf3b_Ethernet98/4 = 'up'"
+  },
+  {
+    "name": "campus-leaf3a",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Port-Channel971 - SPINES_Po501 = 'up'"
+  },
+  {
+    "name": "campus-leaf3a",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Port-Channel973 - CAMPUS-LEAF3C_Po971 = 'up'"
+  },
+  {
+    "name": "campus-leaf3a",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Port-Channel974 - CAMPUS-LEAF3D_Po971 = 'up'"
+  },
+  {
+    "name": "campus-leaf3a",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Port-Channel981 - CAMPUS-LEAF3E_Po971 = 'up'"
+  },
+  {
+    "name": "campus-leaf3a",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Port-Channel983 - MLAG_PEER_campus-leaf3b_Po983 = 'up'"
+  },
+  {
+    "name": "campus-leaf3a",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Vlan10 - Inband Management = 'up'"
+  },
+  {
+    "name": "campus-leaf3a",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Vlan4094 - MLAG_PEER = 'up'"
+  },
+  {
+    "name": "campus-leaf3a",
+    "test": "VerifyMlagStatus",
+    "categories": [
+      "mlag"
+    ],
+    "description": "Verifies the health status of the MLAG configuration.",
+    "result": "success"
+  },
+  {
+    "name": "campus-leaf3a",
+    "test": "VerifyNTP",
+    "categories": [
+      "system"
+    ],
+    "description": "Verifies if NTP is synchronised.",
+    "result": "success"
+  },
+  {
+    "name": "campus-leaf3a",
+    "test": "VerifyReloadCause",
+    "categories": [
+      "system"
+    ],
+    "description": "Verifies the last reload cause of the device.",
+    "result": "success"
+  }
+]

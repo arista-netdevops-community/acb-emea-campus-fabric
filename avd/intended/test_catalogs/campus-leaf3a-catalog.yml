@@ -1,0 +1,161 @@
+anta.tests.connectivity:
+- VerifyLLDPNeighbors:
+    neighbors:
+    - neighbor_device: campus-leaf3b
+      neighbor_port: Ethernet98/3
+      port: Ethernet98/3
+    result_overwrite:
+      custom_field: 'Local: Ethernet98/3 - Remote: campus-leaf3b Ethernet98/3'
+- VerifyLLDPNeighbors:
+    neighbors:
+    - neighbor_device: campus-leaf3b
+      neighbor_port: Ethernet98/4
+      port: Ethernet98/4
+    result_overwrite:
+      custom_field: 'Local: Ethernet98/4 - Remote: campus-leaf3b Ethernet98/4'
+- VerifyLLDPNeighbors:
+    neighbors:
+    - neighbor_device: campus-spine1
+      neighbor_port: Ethernet50/1
+      port: Ethernet97/1
+    result_overwrite:
+      custom_field: 'Local: Ethernet97/1 - Remote: campus-spine1 Ethernet50/1'
+- VerifyLLDPNeighbors:
+    neighbors:
+    - neighbor_device: campus-spine2
+      neighbor_port: Ethernet50/1
+      port: Ethernet97/2
+    result_overwrite:
+      custom_field: 'Local: Ethernet97/2 - Remote: campus-spine2 Ethernet50/1'
+- VerifyLLDPNeighbors:
+    neighbors:
+    - neighbor_device: campus-leaf3c
+      neighbor_port: Ethernet97/1
+      port: Ethernet97/3
+    result_overwrite:
+      custom_field: 'Local: Ethernet97/3 - Remote: campus-leaf3c Ethernet97/1'
+- VerifyLLDPNeighbors:
+    neighbors:
+    - neighbor_device: campus-leaf3d
+      neighbor_port: Ethernet97/1
+      port: Ethernet97/4
+    result_overwrite:
+      custom_field: 'Local: Ethernet97/4 - Remote: campus-leaf3d Ethernet97/1'
+- VerifyLLDPNeighbors:
+    neighbors:
+    - neighbor_device: campus-leaf3e
+      neighbor_port: Ethernet97/1
+      port: Ethernet98/1
+    result_overwrite:
+      custom_field: 'Local: Ethernet98/1 - Remote: campus-leaf3e Ethernet97/1'
+- VerifyReachability:
+    hosts:
+    - destination: 172.16.1.1
+      repeat: 1
+      source: 10.10.10.9
+      vrf: default
+    result_overwrite:
+      custom_field: 'Source: Inband MGMT SVI Vlan10 (IP: 10.10.10.9) - Destination:
+        campus-spine1 Loopback0 (IP: 172.16.1.1)'
+- VerifyReachability:
+    hosts:
+    - destination: 172.16.1.2
+      repeat: 1
+      source: 10.10.10.9
+      vrf: default
+    result_overwrite:
+      custom_field: 'Source: Inband MGMT SVI Vlan10 (IP: 10.10.10.9) - Destination:
+        campus-spine2 Loopback0 (IP: 172.16.1.2)'
+anta.tests.hardware: []
+anta.tests.interfaces:
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Ethernet98/3
+      status: up
+    result_overwrite:
+      custom_field: Interface Ethernet98/3 - MLAG_PEER_campus-leaf3b_Ethernet98/3
+        = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Ethernet98/4
+      status: up
+    result_overwrite:
+      custom_field: Interface Ethernet98/4 - MLAG_PEER_campus-leaf3b_Ethernet98/4
+        = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Ethernet97/1
+      status: up
+    result_overwrite:
+      custom_field: Interface Ethernet97/1 - CAMPUS-SPINE1_Ethernet50/1 = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Ethernet97/2
+      status: up
+    result_overwrite:
+      custom_field: Interface Ethernet97/2 - CAMPUS-SPINE2_Ethernet50/1 = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Ethernet97/3
+      status: up
+    result_overwrite:
+      custom_field: Interface Ethernet97/3 - CAMPUS-LEAF3C_Ethernet97/1 = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Ethernet97/4
+      status: up
+    result_overwrite:
+      custom_field: Interface Ethernet97/4 - CAMPUS-LEAF3D_Ethernet97/1 = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Ethernet98/1
+      status: up
+    result_overwrite:
+      custom_field: Interface Ethernet98/1 - CAMPUS-LEAF3E_Ethernet97/1 = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Port-Channel983
+      status: up
+    result_overwrite:
+      custom_field: Interface Port-Channel983 - MLAG_PEER_campus-leaf3b_Po983 = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Port-Channel971
+      status: up
+    result_overwrite:
+      custom_field: Interface Port-Channel971 - SPINES_Po501 = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Port-Channel973
+      status: up
+    result_overwrite:
+      custom_field: Interface Port-Channel973 - CAMPUS-LEAF3C_Po971 = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Port-Channel974
+      status: up
+    result_overwrite:
+      custom_field: Interface Port-Channel974 - CAMPUS-LEAF3D_Po971 = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Port-Channel981
+      status: up
+    result_overwrite:
+      custom_field: Interface Port-Channel981 - CAMPUS-LEAF3E_Po971 = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Vlan4094
+      status: up
+    result_overwrite:
+      custom_field: Interface Vlan4094 - MLAG_PEER = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Vlan10
+      status: up
+    result_overwrite:
+      custom_field: Interface Vlan10 - Inband Management = 'up'
+anta.tests.mlag:
+- VerifyMlagStatus: null
+anta.tests.system:
+- VerifyNTP: null
+- VerifyReloadCause: null

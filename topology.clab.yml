@@ -1,0 +1,181 @@
+name: campus-fabric
+
+mgmt:
+  ipv4-subnet: 172.20.0.0/16
+  ipv6-subnet: fd00:6265:b424:a8b8::/64
+
+topology:
+  kinds:
+    keysight_ixia-c-one:
+      image: ghcr.io/open-traffic-generator/ixia-c-one:latest
+    ceos:
+      image: arista/ceos:4.32.1F
+      env:
+        CLAB_MGMT_VRF: MGMT
+      binds:
+       - ../cv-onboarding-token:/mnt/flash/cv-onboarding-token:ro
+      startup-config: configs/ceos-startup.cfg
+    linux:
+      image: lab-server
+  nodes:
+    spine1:
+      kind: ceos
+      binds:
+       - configs/eos-intf-mapping/DCS-7050SX3-48YC8.json:/mnt/flash/EosIntfMapping.json:ro
+       - configs/ceos-config/spine1.cfg:/mnt/flash/ceos-config:ro
+      mgmt-ipv4: 172.20.2.1
+      mgmt-ipv6: fd00:6265:b424:a8b8::2:1
+      env:
+        MODEL_NAME: DCS-7050SX3-48YC8
+    spine2:
+      kind: ceos
+      binds:
+       - configs/eos-intf-mapping/DCS-7050SX3-48YC8.json:/mnt/flash/EosIntfMapping.json:ro
+       - configs/ceos-config/spine2.cfg:/mnt/flash/ceos-config:ro
+      mgmt-ipv4: 172.20.2.2
+      mgmt-ipv6: fd00:6265:b424:a8b8::2:2
+      env:
+        MODEL_NAME: DCS-7050SX3-48YC8
+    leaf1a:
+      kind: ceos
+      binds:
+       - configs/eos-intf-mapping/CCS-720XP-48Y6.json:/mnt/flash/EosIntfMapping.json:ro
+       - configs/ceos-config/leaf1a.cfg:/mnt/flash/ceos-config:ro
+      mgmt-ipv4: 172.20.2.3
+      mgmt-ipv6: fd00:6265:b424:a8b8::2:3
+      env:
+        MODEL_NAME: CCS-720XP-48Y6
+    leaf1b:
+      kind: ceos
+      binds:
+       - configs/eos-intf-mapping/CCS-720XP-48Y6.json:/mnt/flash/EosIntfMapping.json:ro
+       - configs/ceos-config/leaf1b.cfg:/mnt/flash/ceos-config:ro
+      mgmt-ipv4: 172.20.2.4
+      mgmt-ipv6: fd00:6265:b424:a8b8::2:4
+      env:
+        MODEL_NAME: CCS-720XP-48Y6
+    leaf2a:
+      kind: ceos
+      binds:
+       - configs/eos-intf-mapping/CCS-755-CH_SUP25.json:/mnt/flash/EosIntfMapping.json:ro
+       - configs/ceos-config/leaf2a.cfg:/mnt/flash/ceos-config:ro
+      mgmt-ipv4: 172.20.2.5
+      mgmt-ipv6: fd00:6265:b424:a8b8::2:5
+      env:
+        CHASSIS_MODEL_NAME: CCS-755-CH
+        CHASSIS_SUPERVISOR_1: CCS-750-SUP25
+        CHASSIS_SUPERVISOR_2: CCS-750-SUP25
+        CHASSIS_LINECARD_1: CCS-750X-48TP-LC
+        CHASSIS_LINECARD_2: CCS-750X-48TP-LC
+        CHASSIS_LINECARD_3: CCS-750X-48TP-LC
+        CHASSIS_LINECARD_4: CCS-750X-48TP-LC
+        CHASSIS_LINECARD_5: CCS-750X-48TP-LC
+    leaf3a:
+      kind: ceos
+      binds:
+       - configs/eos-intf-mapping/CCS-720XP-96ZC2.json:/mnt/flash/EosIntfMapping.json:ro
+       - configs/ceos-config/leaf3a.cfg:/mnt/flash/ceos-config:ro
+      mgmt-ipv4: 172.20.2.6
+      mgmt-ipv6: fd00:6265:b424:a8b8::2:6
+      env:
+        MODEL_NAME: CCS-720XP-96ZC2
+    leaf3b:
+      kind: ceos
+      binds:
+       - configs/eos-intf-mapping/CCS-720XP-96ZC2.json:/mnt/flash/EosIntfMapping.json:ro
+       - configs/ceos-config/leaf3b.cfg:/mnt/flash/ceos-config:ro
+      mgmt-ipv4: 172.20.2.7
+      mgmt-ipv6: fd00:6265:b424:a8b8::2:7
+      env:
+        MODEL_NAME: CCS-720XP-96ZC2
+    leaf3c:
+      kind: ceos
+      binds:
+       - configs/eos-intf-mapping/CCS-720XP-96ZC2.json:/mnt/flash/EosIntfMapping.json:ro
+       - configs/ceos-config/leaf3c.cfg:/mnt/flash/ceos-config:ro
+      mgmt-ipv4: 172.20.2.8
+      mgmt-ipv6: fd00:6265:b424:a8b8::2:8
+      env:
+        MODEL_NAME: CCS-720XP-96ZC2
+    leaf3d:
+      kind: ceos
+      binds:
+       - configs/eos-intf-mapping/CCS-720XP-96ZC2.json:/mnt/flash/EosIntfMapping.json:ro
+       - configs/ceos-config/leaf3d.cfg:/mnt/flash/ceos-config:ro
+      mgmt-ipv4: 172.20.2.9
+      mgmt-ipv6: fd00:6265:b424:a8b8::2:9
+      env:
+        MODEL_NAME: CCS-720XP-96ZC2
+    leaf3e:
+      kind: ceos
+      binds:
+       - configs/eos-intf-mapping/CCS-720XP-96ZC2.json:/mnt/flash/EosIntfMapping.json:ro
+       - configs/ceos-config/leaf3e.cfg:/mnt/flash/ceos-config:ro
+      mgmt-ipv4: 172.20.2.10
+      mgmt-ipv6: fd00:6265:b424:a8b8::2:10
+      env:
+        MODEL_NAME: CCS-720XP-96ZC2
+    ixia-voice:
+      kind: keysight_ixia-c-one
+    idf1-laptop:
+      kind: linux
+      binds:
+        - configs/linux/idf1-laptop-netplan.yaml:/etc/netplan/netplan.yaml
+    idf1-guest:
+      kind: linux
+      binds:
+        - configs/linux/idf1-guest-netplan.yaml:/etc/netplan/netplan.yaml
+    idf2-laptop:
+      kind: linux
+      binds:
+        - configs/linux/idf2-laptop-netplan.yaml:/etc/netplan/netplan.yaml
+    idf2-guest:
+      kind: linux
+      binds:
+        - configs/linux/idf2-guest-netplan.yaml:/etc/netplan/netplan.yaml
+    idf3-laptop:
+      kind: linux
+      binds:
+        - configs/linux/idf3-laptop-netplan.yaml:/etc/netplan/netplan.yaml
+    idf3-guest:
+      kind: linux
+      binds:
+        - configs/linux/idf3-guest-netplan.yaml:/etc/netplan/netplan.yaml
+
+  links:
+      # Spine Peer Links
+    - endpoints: ["spine1:eth55", "spine2:eth55"]
+    - endpoints: ["spine1:eth56", "spine2:eth56"]
+      # IDF1 Peer Links
+    - endpoints: ["leaf1a:eth53", "leaf1b:eth53"]
+    - endpoints: ["leaf1a:eth54", "leaf1b:eth54"]
+      # IDF1 Uplinks
+    - endpoints: ["leaf1a:eth51", "spine1:eth1"]
+    - endpoints: ["leaf1b:eth51", "spine2:eth1"]
+      # IDF2 Uplinks
+    - endpoints: ["leaf2a:eth1_1", "spine1:eth49_1"]
+    - endpoints: ["leaf2a:eth2_1", "spine2:eth49_1"]
+      # IDF3 Peer Links
+    - endpoints: ["leaf3a:eth98_3", "leaf3b:eth98_3"]
+    - endpoints: ["leaf3a:eth98_4", "leaf3b:eth98_4"]
+      # IDF3 Uplinks
+    - endpoints: ["leaf3a:eth97_1", "spine1:eth50_1"]
+    - endpoints: ["leaf3a:eth97_2", "spine2:eth50_1"]
+    - endpoints: ["leaf3b:eth97_1", "spine1:eth51_1"]
+    - endpoints: ["leaf3b:eth97_2", "spine2:eth51_1"]
+      # IDF3 Member Links
+    - endpoints: ["leaf3a:eth97_3", "leaf3c:eth97_1"]
+    - endpoints: ["leaf3b:eth97_3", "leaf3c:eth97_2"]
+    - endpoints: ["leaf3a:eth97_4", "leaf3d:eth97_1"]
+    - endpoints: ["leaf3b:eth97_4", "leaf3d:eth97_2"]
+    - endpoints: ["leaf3a:eth98_1", "leaf3e:eth97_1"]
+    - endpoints: ["leaf3b:eth98_1", "leaf3e:eth97_2"]
+    - endpoints: ["leaf1a:eth1", "idf1-laptop:eth1"]
+    - endpoints: ["leaf1b:eth1", "ixia-voice:eth1"]
+    - endpoints: ["leaf1b:eth2", "idf1-guest:eth1"]
+    - endpoints: ["leaf2a:eth3_1", "idf2-laptop:eth1"]
+    - endpoints: ["leaf2a:eth4_1", "ixia-voice:eth2"]
+    - endpoints: ["leaf2a:eth5_1", "idf2-guest:eth1"]
+    - endpoints: ["leaf3c:eth1", "idf3-laptop:eth1"]
+    - endpoints: ["leaf3d:eth1", "ixia-voice:eth3"]
+    - endpoints: ["leaf3e:eth1", "idf3-guest:eth1"]

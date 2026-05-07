@@ -1,0 +1,249 @@
+ports:
+  - name: idf1
+    location: eth1
+  - name: idf2
+    location: eth2
+  - name: idf3
+    location: eth3
+layer1:
+  - name: phone-ports
+    port_names:
+      - idf1
+      - idf2
+      - idf3
+    speed: speed_1_gbps
+devices:
+  - name: idf1-phone
+    ethernets:
+      - name: idf1.phone.eth
+        mac: 02:00:00:01:01:aa
+        mtu: 1500
+        ipv4_addresses:
+          - name: idf1.phone.ip
+            address: 10.1.20.10
+            gateway: 10.1.20.1
+            prefix: 23
+        connection:
+          choice: port_name
+          port_name: idf1
+
+  - name: idf2-phone
+    ethernets:
+      - name: idf2.phone.eth
+        mac: 02:00:00:02:01:aa
+        mtu: 1500
+        ipv4_addresses:
+          - name: idf2.phone.ip
+            address: 10.2.20.10
+            gateway: 10.2.20.1
+            prefix: 23
+        connection:
+          choice: port_name
+          port_name: idf2
+
+  - name: idf3-phone
+    ethernets:
+      - name: idf3.phone.eth
+        mac: 02:00:00:03:01:aa
+        mtu: 1500
+        ipv4_addresses:
+          - name: idf3.phone.ip
+            address: 10.3.20.10
+            gateway: 10.3.20.1
+            prefix: 23
+        connection:
+          choice: port_name
+          port_name: idf3
+
+flows:
+  - name: Voice IDF1 -> IDF2 and IDF3
+    duration:
+      choice: fixed_packets
+      fixed_packets:
+        gap: 12
+        packets: 100000 # Flow time: 50 sec
+    size:
+      choice: fixed
+      fixed: 1000 # Bytes
+    rate:
+      choice: pps
+      pps: 2000 # 2 MBps = 16 Mbps
+    metrics:
+      enable: true
+      loss: false
+      timestamps: false
+    packet:
+      - choice: ethernet
+        ethernet:
+          dst:
+            choice: auto # Resolve Gateway MAC Address
+          src:
+            choice: value
+            value: 02:00:00:01:01:aa # idf1.phone.eth
+      - choice: ipv4
+        ipv4:
+          priority:
+            choice: dscp
+            dscp:
+              phb:
+                choice: value
+                value: 46 # Expedited Forwarding
+          dst:
+            choice: values
+            values:
+              - 10.2.20.10 # idf2.phone.ip
+              - 10.3.20.10 # idf3.phone.ip
+          src:
+            choice: value
+            value: 10.1.20.10 # idf1.phone.ip
+      - choice: udp
+        udp:
+          dst_port:
+            choice: value
+            increment:
+              count: 10000
+              start: 10000
+              step: 1
+          src_port:
+            choice: increment
+            increment:
+              count: 10000
+              start: 10000
+              step: 1
+    tx_rx:
+      choice: device
+      device:
+        mode: mesh
+        tx_names:
+          - idf1.phone.ip
+        rx_names:
+          - idf2.phone.ip
+          - idf3.phone.ip
+
+  - name: Voice IDF2 -> IDF1 and IDF3
+    duration:
+      choice: fixed_packets
+      fixed_packets:
+        gap: 12
+        packets: 100000 # Flow time: 50 sec
+    size:
+      choice: fixed
+      fixed: 1000 # Bytes
+    rate:
+      choice: pps
+      pps: 2000 # 2 MBps = 16 Mbps
+    metrics:
+      enable: true
+      loss: false
+      timestamps: false
+    packet:
+      - choice: ethernet
+        ethernet:
+          dst:
+            choice: auto # Resolve Gateway MAC Address
+          src:
+            choice: value
+            value: 02:00:00:02:01:aa # idf2.phone.eth
+      - choice: ipv4
+        ipv4:
+          priority:
+            choice: dscp
+            dscp:
+              phb:
+                choice: value
+                value: 46 # Expedited Forwarding
+          dst:
+            choice: values
+            values:
+              - 10.1.20.10 # idf1.phone.ip
+              - 10.3.20.10 # idf3.phone.ip
+          src:
+            choice: value
+            value: 10.2.20.10 # idf2.phone.ip
+      - choice: udp
+        udp:
+          dst_port:
+            choice: value
+            increment:
+              count: 10000
+              start: 10000
+              step: 1
+          src_port:
+            choice: increment
+            increment:
+              count: 10000
+              start: 10000
+              step: 1
+    tx_rx:
+      choice: device
+      device:
+        mode: mesh
+        tx_names:
+          - idf2.phone.ip
+        rx_names:
+          - idf1.phone.ip
+          - idf3.phone.ip
+
+  - name: Voice IDF3 -> IDF1 and IDF2
+    duration:
+      choice: fixed_packets
+      fixed_packets:
+        gap: 12
+        packets: 100000 # Flow time: 50 sec
+    size:
+      choice: fixed
+      fixed: 1000 # Bytes
+    rate:
+      choice: pps
+      pps: 2000 # 2 MBps = 16 Mbps
+    metrics:
+      enable: true
+      loss: false
+      timestamps: false
+    packet:
+      - choice: ethernet
+        ethernet:
+          dst:
+            choice: auto # Resolve Gateway MAC Address
+          src:
+            choice: value
+            value: 02:00:00:03:01:aa # idf3.phone.eth
+      - choice: ipv4
+        ipv4:
+          priority:
+            choice: dscp
+            dscp:
+              phb:
+                choice: value
+                value: 46 # Expedited Forwarding
+          dst:
+            choice: values
+            values:
+              - 10.1.20.10 # idf1.phone.ip
+              - 10.2.20.10 # idf2.phone.ip
+          src:
+            choice: value
+            value: 10.3.20.10 # idf3.phone.ip
+      - choice: udp
+        udp:
+          dst_port:
+            choice: value
+            increment:
+              count: 10000
+              start: 10000
+              step: 1
+          src_port:
+            choice: increment
+            increment:
+              count: 10000
+              start: 10000
+              step: 1
+    tx_rx:
+      choice: device
+      device:
+        mode: mesh
+        tx_names:
+          - idf3.phone.ip
+        rx_names:
+          - idf1.phone.ip
+          - idf2.phone.ip

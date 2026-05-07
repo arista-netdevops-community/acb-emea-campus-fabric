@@ -1,0 +1,22 @@
+anta_inventory:
+  hosts:
+  - host: clab-campus-fabric-spine1
+    name: campus-spine1
+  - host: clab-campus-fabric-spine2
+    name: campus-spine2
+  - host: clab-campus-fabric-leaf1a
+    name: campus-leaf1a
+  - host: clab-campus-fabric-leaf1b
+    name: campus-leaf1b
+  - host: clab-campus-fabric-leaf2a
+    name: campus-leaf2a
+  - host: clab-campus-fabric-leaf3a
+    name: campus-leaf3a
+  - host: clab-campus-fabric-leaf3b
+    name: campus-leaf3b
+  - host: clab-campus-fabric-leaf3c
+    name: campus-leaf3c
+  - host: clab-campus-fabric-leaf3d
+    name: campus-leaf3d
+  - host: clab-campus-fabric-leaf3e
+    name: campus-leaf3e

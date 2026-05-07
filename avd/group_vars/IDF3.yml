@@ -1,0 +1,11 @@
+generate_cv_tags:
+  device_tags:
+    - name: Campus
+      value: Arista Cloud Builders
+    - name: Campus-Pod
+      value: Headquarters
+    - name: Access-Pod
+      value: IDF3
+  interface_tags:
+    - name: Link-Type
+      value: Fabric

@@ -1,0 +1,26 @@
+custom_structured_configuration_management_interfaces:
+  - name: Management1/1
+    vrf: MGMT
+    lldp:
+      transmit: False
+      receive: False
+
+custom_structured_configuration_ntp:
+  local_interface:
+    name: Management1/1
+    vrf: MGMT
+  servers:
+    - name: 0.pool.ntp.org
+      vrf: MGMT
+
+generate_cv_tags:
+  device_tags:
+    - name: Campus
+      value: Arista Cloud Builders
+    - name: Campus-Pod
+      value: Headquarters
+    - name: Access-Pod
+      value: IDF2
+  interface_tags:
+    - name: Link-Type
+      value: Fabric

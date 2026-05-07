@@ -1,0 +1,100 @@
+[
+  {
+    "name": "campus-leaf3c",
+    "test": "VerifyLLDPNeighbors",
+    "categories": [
+      "connectivity"
+    ],
+    "description": "Verifies that the provided LLDP neighbors are connected properly.",
+    "result": "success",
+    "custom_field": "Local: Ethernet97/1 - Remote: campus-leaf3a Ethernet97/3"
+  },
+  {
+    "name": "campus-leaf3c",
+    "test": "VerifyLLDPNeighbors",
+    "categories": [
+      "connectivity"
+    ],
+    "description": "Verifies that the provided LLDP neighbors are connected properly.",
+    "result": "success",
+    "custom_field": "Local: Ethernet97/2 - Remote: campus-leaf3b Ethernet97/3"
+  },
+  {
+    "name": "campus-leaf3c",
+    "test": "VerifyReachability",
+    "categories": [
+      "connectivity"
+    ],
+    "description": "Test the network reachability to one or many destination IP(s).",
+    "result": "success",
+    "custom_field": "Source: Inband MGMT SVI Vlan10 (IP: 10.10.10.11) - Destination: campus-spine1 Loopback0 (IP: 172.16.1.1)"
+  },
+  {
+    "name": "campus-leaf3c",
+    "test": "VerifyReachability",
+    "categories": [
+      "connectivity"
+    ],
+    "description": "Test the network reachability to one or many destination IP(s).",
+    "result": "success",
+    "custom_field": "Source: Inband MGMT SVI Vlan10 (IP: 10.10.10.11) - Destination: campus-spine2 Loopback0 (IP: 172.16.1.2)"
+  },
+  {
+    "name": "campus-leaf3c",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Ethernet97/1 - CAMPUS-LEAF3A_Ethernet97/3 = 'up'"
+  },
+  {
+    "name": "campus-leaf3c",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Ethernet97/2 - CAMPUS-LEAF3B_Ethernet97/3 = 'up'"
+  },
+  {
+    "name": "campus-leaf3c",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Port-Channel971 - IDF3_AGG_Po973 = 'up'"
+  },
+  {
+    "name": "campus-leaf3c",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Vlan10 - Inband Management = 'up'"
+  },
+  {
+    "name": "campus-leaf3c",
+    "test": "VerifyNTP",
+    "categories": [
+      "system"
+    ],
+    "description": "Verifies if NTP is synchronised.",
+    "result": "success"
+  },
+  {
+    "name": "campus-leaf3c",
+    "test": "VerifyReloadCause",
+    "categories": [
+      "system"
+    ],
+    "description": "Verifies the last reload cause of the device.",
+    "result": "success"
+  }
+]
